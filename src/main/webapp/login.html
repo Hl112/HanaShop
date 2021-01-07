@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Login - Hana Shop</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="google-signin-client_id" content="523448862507-7ascupmq7mgf5h8h0d2f6b871fug2rqs.apps.googleusercontent.com">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <!-- HL CSS -->
+        <link rel="stylesheet" href="assets/css/theme.css">
+        <!-- Google Login -->
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+    </head>
+    <body>
+        <div class="wrapper">
+            <h1>Sign In</h1>
+            <form action="DispatcherServlet" method="post">
+                <input type="text" name="username" placeholder="Username">
+                <input type="password" name="password" placeholder="Password">
+                <div class="button">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <input type="submit" value="Login" name="btAction">
+                </div>
+            </form>
+            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+
+            <div class="bottom-text">
+
+                <input type="checkbox" name="remember">Remember
+            </div>
+        </div>
+        <!-- Optional JavaScript -->
+        <script>
+            function onSignIn(googleUser) {
+                var profile = googleUser.getBasicProfile();
+                console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+                console.log('Name: ' + profile.getName());
+                console.log('Image URL: ' + profile.getImageUrl());
+                console.log('Email: ' + profile.getEmail());
+                var id_token = googleUser.getAuthResponse().id_token;
+          //       location.replace('./LoginGoogleServlet?email=' + profile.getEmail() + '&id=' + profile.getId() + '&fullname=' + profile.getName());
+                var http = new XMLHttpRequest();
+                var url = './LoginGoogleServlet';
+                var params = 'email=' + profile.getEmail() + '&id=' + profile.getId() + '&fullname=' + profile.getName();
+                http.open('POST', url, true);
+                http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                http.onreadystatechange = function () {//Call a function when the state changes.
+                    if (http.readyState === 4 && http.status === 200) {
+                        location.replace('hanaShop.html');
+                    }
+                };
+                http.send(params);
+            }
+        </script>
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </body>
+</html>
