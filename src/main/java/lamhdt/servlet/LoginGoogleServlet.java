@@ -6,6 +6,8 @@
 package lamhdt.servlet;
 
 import java.io.IOException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.sql.SQLException;
 import javax.naming.NamingException;
 import javax.servlet.RequestDispatcher;
@@ -14,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.AbstractButton;
 import lamhdt.account.AccountDAO;
 
 /**
@@ -23,7 +26,7 @@ import lamhdt.account.AccountDAO;
 @WebServlet(name = "LoginGoogleServlet", urlPatterns = {"/LoginGoogleServlet"})
 public class LoginGoogleServlet extends HttpServlet {
 
-    private final String HOME_PAGE = "hanaShop.html";
+    private final String HOME_PAGE = "index.jsp";
 
     private final String LOGIN_SERVLET = "LoginServlet";
     /**
@@ -41,6 +44,8 @@ public class LoginGoogleServlet extends HttpServlet {
         String email = request.getParameter("email");
         String id = request.getParameter("id");
         String fullname = request.getParameter("fullname");
+        fullname = URLEncoder.encode(fullname, "ISO-8859-1");
+        fullname = URLDecoder.decode(fullname, "UTF-8");
         String url = HOME_PAGE;
         try {
             AccountDAO dao = new AccountDAO();
@@ -48,7 +53,7 @@ public class LoginGoogleServlet extends HttpServlet {
             if (!result) {
                 dao.registration(email, id, fullname);
             }
-            url = LOGIN_SERVLET + "?username=" + email + "&password" + id;
+            url = LOGIN_SERVLET + "?username=" + email + "&password=" + id +"&remember=OK";
         } catch (SQLException ex) {
             log("LoginGoogleServlet _ SQL :" + ex.getMessage());
         } catch (NamingException ex) {

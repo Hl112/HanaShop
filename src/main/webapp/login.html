@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="assets/css/theme.css">
         <!-- Google Login -->
         <script src="https://apis.google.com/js/platform.js" async defer></script>
+       
     </head>
     <body>
         <div class="wrapper">
@@ -35,28 +36,7 @@
             </div>
         </div>
         <!-- Optional JavaScript -->
-        <script>
-            function onSignIn(googleUser) {
-                var profile = googleUser.getBasicProfile();
-                console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-                console.log('Name: ' + profile.getName());
-                console.log('Image URL: ' + profile.getImageUrl());
-                console.log('Email: ' + profile.getEmail());
-                var id_token = googleUser.getAuthResponse().id_token;
-          //       location.replace('./LoginGoogleServlet?email=' + profile.getEmail() + '&id=' + profile.getId() + '&fullname=' + profile.getName());
-                var http = new XMLHttpRequest();
-                var url = './LoginGoogleServlet';
-                var params = 'email=' + profile.getEmail() + '&id=' + profile.getId() + '&fullname=' + profile.getName();
-                http.open('POST', url, true);
-                http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-                http.onreadystatechange = function () {//Call a function when the state changes.
-                    if (http.readyState === 4 && http.status === 200) {
-                        location.replace('hanaShop.html');
-                    }
-                };
-                http.send(params);
-            }
-        </script>
+        <script src="assets/js/app.js"></script>
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

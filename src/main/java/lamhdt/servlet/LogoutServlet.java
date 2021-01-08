@@ -22,7 +22,7 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "LogoutServlet", urlPatterns = {"/LogoutServlet"})
 public class LogoutServlet extends HttpServlet {
 
-    private final String HOME_PAGE = "hanaShop.html";
+    private final String HOME_PAGE = "index.jsp";
     private final String LOGIN_PAGE = "login.html";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

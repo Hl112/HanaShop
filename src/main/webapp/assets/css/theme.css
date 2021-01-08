@@ -35,11 +35,13 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
+.bg-dark {
+  background-color: #000000 !important;
+}
 h1 {
   margin: 0;
   padding: 0;
   font-weight: bold;
-  font-style: 13px;
   margin-bottom: 8%;
 }
 
@@ -85,7 +87,6 @@ h1 {
   background: transparent;
   outline: none;
   height: 30px;
-  font-style: 16px;
   opacity: 1;
   color: #fff;
 }
@@ -177,12 +178,11 @@ h1 {
   height: 40px;
   background-color: transparent;
   color: #fff;
-  font-style: 20px;
+
   font-weight: bold;
   letter-spacing: 4px;
   text-transform: uppercase;
   text-decoration: none;
-  font-style: 20px;
   transition: 0.2s;
 }
 
@@ -191,7 +191,6 @@ h1 {
 }
 
 .wrapper a {
-  font-style: 14px;
   text-decoration: none;
   color: #000;
   opacity: 0.8;
@@ -257,7 +256,6 @@ h1 {
 }
 .h-text {
   color: #fff;
-  font-style: 15px;
   display: inline-block;
   text-transform: uppercase;
   position: relative;
@@ -327,7 +325,6 @@ h1 {
 
 .toggle-menu i {
   margin-left: 250px;
-  font-style: 14px;
   font-weight: 600;
   color: #fff;
   cursor: pointer;
@@ -337,13 +334,12 @@ h1 {
 .right-nav-link a.nav-link {
   padding-right: 0.8rem !important;
   padding-left: 0.8rem !important;
-  font-style: 20px;
   color: #fff;
 }
 
 /* Dropdown Menu */
 .dropdown-menu {
-  border: 0px solids rgba(0, 0, 0, 0.08) !important;
+  border: 0px solid rgba(0, 0, 0, 0.08) !important;
   background-color: #000;
   font-size: 15px;
   color: #fff;
@@ -402,7 +398,6 @@ h1 {
 
 .logo-text {
   color: #fff;
-  font-style: 15px;
   display: inline-block;
   text-transform: uppercase;
   position: relative;
@@ -504,4 +499,10 @@ h1 {
   -moz-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
   transition: all 0.3s ease; 
+}
+
+.pd-img{
+  
+  width: 100%;
+  padding: 0;
 }

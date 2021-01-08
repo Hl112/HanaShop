@@ -39,7 +39,7 @@ public class AccountDAO implements Serializable {
             rs = preStm.executeQuery();
             if(rs.next()){
                 boolean isAdmin = rs.getBoolean("isAdmin");
-                String fullname = rs.getString("fullname");
+                String fullname = rs.getNString("fullname");
                 info = new AccountDTO(username, password, fullname, isAdmin);
                 return true;
             }
@@ -59,7 +59,7 @@ public class AccountDAO implements Serializable {
             String sql = "INSERT INTO Users(userID, fullname, password, isAdmin) VALUES(?,?,?,?)";
             preStm = conn.prepareStatement(sql);
             preStm.setString(1, userID);
-            preStm.setString(2, fullname);
+            preStm.setNString(2, fullname);
             preStm.setString(3, password);
             preStm.setBoolean(4, false);
             return preStm.executeUpdate() > 0;

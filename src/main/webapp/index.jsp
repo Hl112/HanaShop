@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-         <title>Home - Hana Shop</title>
+        <title>Home - Hana Shop</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="google-signin-client_id"
@@ -17,6 +17,10 @@
         <jsp:include page="header.jsp" flush="true"/>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        
+        <jsp:include page="shopping.jsp" flush="false"/>
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/js/bootstrap.js"></script>
     </body>
 </html>

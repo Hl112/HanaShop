@@ -3,6 +3,7 @@
     Created on : Jan 7, 2021, 6:58:00 AM
     Author     : HL
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -20,17 +21,11 @@
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
         <!-- Google Login -->
         <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
-        <script>
-            function onLoad() {
-                gapi.load('auth2', function () {
-                    gapi.auth2.init();
-                });
-            }
-        </script>
+        <script src="assets/js/app.js"></script>
     </head>
     <body>
        <!--Start topbar header-->
-  <header class="topbar-nav">
+  <header class="topbar-nav bg-dark">
     <nav class="navbar navbar-expand fixed-top">
       <ul class="navbar-nav mr-auto align-items-center">
         <li class="nav-item">
@@ -40,19 +35,22 @@
           </a>
         </li>
         <li class="nav-item">
-          <form class="search-bar">
-            <input type="text" class="form-control" placeholder="Enter keywords">
-            <a href="javascript:void();"><i class="icon-magnifier"></i></a>
-          </form>
+            <a class="nav-link" href=""
         </li>
       </ul>
 
       <ul class="navbar-nav align-items-center right-nav-link">
         <li class="nav-item">
           <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
-            <span class="user-profile">
-              <h5 class="logo-text">Welcome, ADMIN</h5>
+              <c:if test="${not empty sessionScope.USER}">
+              <span class="user-profile">
+                  <h5 class="logo-text">Welcome, ${sessionScope.USER.fullname}</h5>
             </span>
+              </c:if>
+              <c:if test="${empty sessionScope.USER}">
+                  <a href="login.html">
+                  <h5 class="logo-text">Login</h5></a>
+              </c:if>
           </a>
           <ul class="dropdown-menu dropdown-menu-right">
 
@@ -74,5 +72,6 @@
     </nav>
   </header>
   <!--End topbar header-->
+  
     </body>
 </html>

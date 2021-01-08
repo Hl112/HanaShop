@@ -42,64 +42,91 @@ public class ProductDAO implements Serializable {
         }
     }
 
-   public List<ProductDTO> getAllProduct() throws NamingException, SQLException{
-       List<ProductDTO> result = null;
-       try {
-           conn = DBHelper.makeConnection();
-           String sql = "SELECT productID,productName,productImage,productDescription,productPrice,quantity,createDate,categoryId,status FROM Product";
-           preStm = conn.prepareStatement(sql);
-           rs = preStm.executeQuery();
-           result = new ArrayList<>();
-           CategoryDAO dao = new CategoryDAO();
-           while(rs.next()){
-               int id = rs.getInt("productID");
-               String name = rs.getNString("productName");
-               String img = rs.getString("productImage");
-               String description = rs.getNString("productDescription");
-               float price = rs.getFloat("productPrice");
-               int quantity = rs.getInt("quantity");
-               Date createDate = rs.getDate("createDate");
-               int categoryId = rs.getInt("categoryId");
-               boolean status = rs.getBoolean("status");
-               CategoryDTO category = dao.getCategoryById(categoryId, conn);
-               ProductDTO dto = new ProductDTO(id, name, img, description, price, quantity, createDate, category, status);
-               result.add(dto);
-           }
-       } finally{
-           closeConnection();
-       }
-       return result;
-   }
-   
-   public List<ProductDTO> searchProduct(String searchName, int searchCategoryId, int min, int max) throws NamingException, SQLException{
-       List<ProductDTO> result = null;
-       String searchCategory = (searchCategoryId != -1) ? " AND categoryId = "+searchCategoryId:"";
-       try {
-           conn = DBHelper.makeConnection();
-           String sql = "SELECT productID,productName,productImage,productDescription,productPrice,quantity,createDate,categoryId,status \n" +
-"FROM Product\n" +
-"WHERE productName LIKE '%g%' AND productPrice BETWEEN 10 AND 10000" + searchCategory;
-           preStm = conn.prepareStatement(sql);
-           rs = preStm.executeQuery();
-           result = new ArrayList<>();
-           CategoryDAO dao = new CategoryDAO();
-           while(rs.next()){
-               int id = rs.getInt("productID");
-               String name = rs.getNString("productName");
-               String img = rs.getString("productImage");
-               String description = rs.getNString("productDescription");
-               float price = rs.getFloat("productPrice");
-               int quantity = rs.getInt("quantity");
-               Date createDate = rs.getDate("createDate");
-               int categoryId = rs.getInt("categoryId");
-               boolean status = rs.getBoolean("status");
-               CategoryDTO category = dao.getCategoryById(categoryId, conn);
-               ProductDTO dto = new ProductDTO(id, name, img, description, price, quantity, createDate, category, status);
-               result.add(dto);
-           }
-       } finally{
-           closeConnection();
-       }
-       return result;
-   }
+    public List<ProductDTO> getAllProduct() throws NamingException, SQLException {
+        List<ProductDTO> result = null;
+        try {
+            conn = DBHelper.makeConnection();
+            String sql = "SELECT productID,productName,productImage,productDescription,productPrice,quantity,createDate,categoryId,status FROM Product";
+            preStm = conn.prepareStatement(sql);
+            rs = preStm.executeQuery();
+            result = new ArrayList<>();
+            CategoryDAO dao = new CategoryDAO();
+            while (rs.next()) {
+                int id = rs.getInt("productID");
+                String name = rs.getNString("productName");
+                String img = rs.getString("productImage");
+                String description = rs.getNString("productDescription");
+                float price = rs.getFloat("productPrice");
+                int quantity = rs.getInt("quantity");
+                Date createDate = rs.getDate("createDate");
+                int categoryId = rs.getInt("categoryId");
+                boolean status = rs.getBoolean("status");
+                CategoryDTO category = dao.getCategoryById(categoryId, conn);
+                ProductDTO dto = new ProductDTO(id, name, img, description, price, quantity, createDate, category, status);
+                result.add(dto);
+            }
+        } finally {
+            closeConnection();
+        }
+        return result;
+    }
+
+    public float getMaxPrice(Connection conn) throws SQLException {
+        String sql = "SELECT MAX(productPrice) AS maxPrice FROM dbo.Product";
+        preStm = conn.prepareStatement(sql);
+        rs = preStm.executeQuery();
+        if (rs.next()) {
+            return rs.getFloat("maxPrice");
+        }
+        return 999999;
+    }
+
+    public float getMinPrice(Connection conn) throws SQLException {
+        String sql = "SELECT MIN(productPrice) AS minPrice FROM dbo.Product";
+        preStm = conn.prepareStatement(sql);
+        rs = preStm.executeQuery();
+        if (rs.next()) {
+            return rs.getFloat("minPrice");
+        }
+        return 0;
+    }
+
+    public List<ProductDTO> searchProduct(String searchName, int searchCategoryId, float min, float max) throws NamingException, SQLException {
+        List<ProductDTO> result = null;
+        String searchCategory = (searchCategoryId != -1) ? " AND categoryId = " + searchCategoryId : "";
+
+        try {
+            conn = DBHelper.makeConnection();
+            if (min == -1) {
+                min = getMinPrice(conn);
+            }
+            if (max == -1) {
+                max = getMaxPrice(conn);
+            }
+            String sql = "SELECT productID,productName,productImage,productDescription,productPrice,quantity,createDate,categoryId,status \n"
+                    + "FROM Product\n"
+                    + "WHERE productName LIKE '%" + searchName + "%' AND productPrice BETWEEN " + min + " AND " + max + "" + searchCategory + " AND status = 1 AND quantity >0 ORDER BY createDate DESC";
+            preStm = conn.prepareStatement(sql);
+            rs = preStm.executeQuery();
+            result = new ArrayList<>();
+            CategoryDAO dao = new CategoryDAO();
+            while (rs.next()) {
+                int id = rs.getInt("productID");
+                String name = rs.getNString("productName");
+                String img = rs.getString("productImage");
+                String description = rs.getNString("productDescription");
+                float price = rs.getFloat("productPrice");
+                int quantity = rs.getInt("quantity");
+                Date createDate = rs.getDate("createDate");
+                int categoryId = rs.getInt("categoryId");
+                boolean status = rs.getBoolean("status");
+                CategoryDTO category = dao.getCategoryById(categoryId, conn);
+                ProductDTO dto = new ProductDTO(id, name, img, description, price, quantity, createDate, category, status);
+                result.add(dto);
+            }
+        } finally {
+            closeConnection();
+        }
+        return result;
+    }
 }

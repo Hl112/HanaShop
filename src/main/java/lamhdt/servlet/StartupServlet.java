@@ -23,7 +23,7 @@ import lamhdt.account.AccountDTO;
 @WebServlet(name = "StartupServlet", urlPatterns = {"/StartupServlet"})
 public class StartupServlet extends HttpServlet {
 
-    private final String HOME_PAGE = "hanaShop.html";
+    private final String HOME_PAGE = "index.jsp";
     private final String LOGIN_PAGE = "login.html";
     private final String LOGIN_SERVLET = "LoginServlet";
 
@@ -41,7 +41,7 @@ public class StartupServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = HOME_PAGE; 
         try {
-            HttpSession session = request.getSession();
+            HttpSession session = request.getSession(false);
             if (session != null) {
                 AccountDTO user = (AccountDTO) session.getAttribute("USER");
                 if (user == null) {

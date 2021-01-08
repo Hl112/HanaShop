@@ -6,27 +6,29 @@
 package lamhdt.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.naming.NamingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import lamhdt.account.AccountDAO;
-import lamhdt.account.AccountDTO;
+import lamhdt.product.ProductDAO;
+import lamhdt.product.ProductDTO;
 
 /**
  *
  * @author HL
  */
-public class LoginServlet extends HttpServlet {
+@WebServlet(name = "ShowProductServlet", urlPatterns = {"/ShowProductServlet"})
+public class ShowProductServlet extends HttpServlet {
 
-    private final String LOGIN_PAGE = "login.html";
-    private final String HOME_PAGE = "index.jsp";
+    private final String SHOPPING_PAGE = "shopping.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,32 +42,21 @@ public class LoginServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        String save = request.getParameter("remember");
-        String url = LOGIN_PAGE;
         try {
-           AccountDAO dao = new AccountDAO();
-           boolean result = dao.checkLogin(username, password);
-           if(result){
-               HttpSession session = request.getSession();
-               AccountDTO user = dao.getInfo();
-               session.setAttribute("USER", user);
-               if(save != null){
-                   Cookie acc = new Cookie("USER", username+"-"+password);
-                   acc.setMaxAge(60*3);
-                   response.addCookie(acc);
-               }
-               url = HOME_PAGE;
-           }
-        } catch (SQLException ex) {
-            log("LoginServlet _ SQL : " +ex.getMessage());
+
+            ProductDAO dao = new ProductDAO();
+            List<ProductDTO> list = dao.getAllProduct();
+            HttpSession session = request.getSession();
+            session.setAttribute("PRODUCT", list);
         } catch (NamingException ex) {
-            log("LoginServlet _ Naming : " + ex.getMessage());
+            log("ShowProductServlet _ Naming : " + ex.getMessage());
+        } catch (SQLException ex) {
+            log("ShowProductServlet _ SQL : " +ex.getMessage());
         }finally{
-            RequestDispatcher rd = request.getRequestDispatcher(url);
+            RequestDispatcher rd = request.getRequestDispatcher(SHOPPING_PAGE);
             rd.forward(request, response);
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
