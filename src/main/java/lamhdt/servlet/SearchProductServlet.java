@@ -6,10 +6,9 @@
 package lamhdt.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.naming.NamingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -27,8 +26,8 @@ import lamhdt.product.ProductDTO;
  *
  * @author HL
  */
-@WebServlet(name = "ShowProductServlet", urlPatterns = {"/ShowProductServlet"})
-public class ShowProductServlet extends HttpServlet {
+@WebServlet(name = "SearchProductServlet", urlPatterns = {"/SearchProductServlet"})
+public class SearchProductServlet extends HttpServlet {
 
     private final String SHOPPING_PAGE = "shopping.jsp";
 
@@ -44,23 +43,32 @@ public class ShowProductServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String searchValue = request.getParameter("searchValue");
+        String categoryId = request.getParameter("category");
+        String price = request.getParameter("price");
+        int id = -1, priceMax = -1;
         try {
+            if(categoryId != null){
+                id = Integer.parseInt(categoryId);
+            }
+            if(price != null){
+                priceMax = Integer.parseInt(price);
+            }
             CategoryDAO cateDAO = new CategoryDAO();
             ProductDAO dao = new ProductDAO();
-            List<ProductDTO> list = dao.getAllProduct();
+            List<ProductDTO> list = dao.searchProduct(searchValue, id, 0, priceMax);
             List<CategoryDTO> listCategory = cateDAO.getAllCategory();
             HttpSession session = request.getSession();
             session.setAttribute("CATEGORY", listCategory);
             session.setAttribute("PRODUCT", list);
         } catch (NamingException ex) {
-            log("ShowProductServlet _ Naming : " + ex.getMessage());
+            log("SearchProductServlet _ Naming : " + ex.getMessage());
         } catch (SQLException ex) {
-            log("ShowProductServlet _ SQL : " +ex.getMessage());
-        }finally{
+            log("SearchProductServlet _ SQL : " + ex.getMessage());
+        } finally {
             RequestDispatcher rd = request.getRequestDispatcher(SHOPPING_PAGE);
             rd.forward(request, response);
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

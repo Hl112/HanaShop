@@ -7,7 +7,9 @@ package lamhdt.servlet;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.NamingException;
@@ -18,8 +20,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import lamhdt.category.CategoryDAO;
-import lamhdt.category.CategoryDTO;
+import lamhdt.cart.CartObj;
 import lamhdt.product.ProductDAO;
 import lamhdt.product.ProductDTO;
 
@@ -27,10 +28,10 @@ import lamhdt.product.ProductDTO;
  *
  * @author HL
  */
-@WebServlet(name = "ShowProductServlet", urlPatterns = {"/ShowProductServlet"})
-public class ShowProductServlet extends HttpServlet {
+@WebServlet(name = "ViewCartServlet", urlPatterns = {"/ViewCartServlet"})
+public class ViewCartServlet extends HttpServlet {
 
-    private final String SHOPPING_PAGE = "shopping.jsp";
+    private final String VIEWCART_PAGE = "viewYourCart.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -45,22 +46,35 @@ public class ShowProductServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            CategoryDAO cateDAO = new CategoryDAO();
-            ProductDAO dao = new ProductDAO();
-            List<ProductDTO> list = dao.getAllProduct();
-            List<CategoryDTO> listCategory = cateDAO.getAllCategory();
-            HttpSession session = request.getSession();
-            session.setAttribute("CATEGORY", listCategory);
-            session.setAttribute("PRODUCT", list);
+            HttpSession session = request.getSession(false);
+            if (session != null) {
+                CartObj cart = (CartObj) session.getAttribute("CART");
+                List<ProductDTO> listProduct = null;
+                if (cart != null) {
+                    Map<Integer, Integer> items = cart.getItems();
+                    if (items != null) {
+                        if (listProduct == null) {
+                            listProduct = new ArrayList<>();
+                        }
+                        ProductDAO dao = new ProductDAO();
+                        for (Integer item : items.keySet()) {
+                            int quantity = items.get(item);
+                            ProductDTO dto = dao.getProductById((int) item);
+                            dto.setQuantity(quantity);
+                            listProduct.add(dto);
+                        }
+                    }
+                    session.setAttribute("LISTCART", listProduct);
+                }
+            }
         } catch (NamingException ex) {
-            log("ShowProductServlet _ Naming : " + ex.getMessage());
+            log("ViewCartServlet _ Naming: " + ex.getMessage());
         } catch (SQLException ex) {
-            log("ShowProductServlet _ SQL : " +ex.getMessage());
-        }finally{
-            RequestDispatcher rd = request.getRequestDispatcher(SHOPPING_PAGE);
+            log("ViewCartServlet _ SQL: " + ex.getMessage());
+        } finally {
+            RequestDispatcher rd = request.getRequestDispatcher(VIEWCART_PAGE);
             rd.forward(request, response);
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

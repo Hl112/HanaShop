@@ -18,7 +18,7 @@ public class ProductDTO implements Serializable{
     private String productName;
     private String productImage;
     private String productDescription;
-    private float productPrice;
+    private int productPrice;
     private int quantity;
     private Date createDate;
     private int categoryId;
@@ -28,7 +28,7 @@ public class ProductDTO implements Serializable{
     public ProductDTO() {
     }
 
-    public ProductDTO(int productId, String productName, String productImage, String productDescription, float productPrice, int quantity, Date createDate, int categoryId, boolean status) {
+    public ProductDTO(int productId, String productName, String productImage, String productDescription, int productPrice, int quantity, Date createDate, int categoryId, boolean status) {
         this.productId = productId;
         this.productName = productName;
         this.productImage = productImage;
@@ -40,7 +40,7 @@ public class ProductDTO implements Serializable{
         this.status = status;
     }
 
-    public ProductDTO(int productId, String productName, String productImage, String productDescription, float productPrice, int quantity, Date createDate, CategoryDTO category, boolean status) {
+    public ProductDTO(int productId, String productName, String productImage, String productDescription, int productPrice, int quantity, Date createDate, CategoryDTO category, boolean status) {
         this.productId = productId;
         this.productName = productName;
         this.productImage = productImage;
@@ -93,11 +93,11 @@ public class ProductDTO implements Serializable{
         this.productDescription = productDescription;
     }
 
-    public float getProductPrice() {
+    public int getProductPrice() {
         return productPrice;
     }
 
-    public void setProductPrice(float productPrice) {
+    public void setProductPrice(int productPrice) {
         this.productPrice = productPrice;
     }
 

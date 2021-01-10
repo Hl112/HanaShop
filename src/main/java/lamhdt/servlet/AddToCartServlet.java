@@ -6,11 +6,7 @@
 package lamhdt.servlet;
 
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.naming.NamingException;
+import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,20 +14,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import lamhdt.category.CategoryDAO;
-import lamhdt.category.CategoryDTO;
-import lamhdt.product.ProductDAO;
-import lamhdt.product.ProductDTO;
+import lamhdt.cart.CartObj;
 
 /**
  *
  * @author HL
  */
-@WebServlet(name = "ShowProductServlet", urlPatterns = {"/ShowProductServlet"})
-public class ShowProductServlet extends HttpServlet {
-
+@WebServlet(name = "AddToCartServlet", urlPatterns = {"/AddToCartServlet"})
+public class AddToCartServlet extends HttpServlet {
+    
     private final String SHOPPING_PAGE = "shopping.jsp";
-
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -44,23 +36,23 @@ public class ShowProductServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String id = request.getParameter("id");
         try {
-            CategoryDAO cateDAO = new CategoryDAO();
-            ProductDAO dao = new ProductDAO();
-            List<ProductDTO> list = dao.getAllProduct();
-            List<CategoryDTO> listCategory = cateDAO.getAllCategory();
             HttpSession session = request.getSession();
-            session.setAttribute("CATEGORY", listCategory);
-            session.setAttribute("PRODUCT", list);
-        } catch (NamingException ex) {
-            log("ShowProductServlet _ Naming : " + ex.getMessage());
-        } catch (SQLException ex) {
-            log("ShowProductServlet _ SQL : " +ex.getMessage());
-        }finally{
+            CartObj cart = (CartObj) session.getAttribute("CART");
+            if(cart == null){
+                cart = new CartObj();
+            }
+            if(id != null){
+                int productId = Integer.parseInt(id);
+                cart.addItemToCart(productId);
+            }
+            session.setAttribute("CART", cart);
+            request.setAttribute("NOTI", "Add to cart successfuly");
+        } finally{
             RequestDispatcher rd = request.getRequestDispatcher(SHOPPING_PAGE);
             rd.forward(request, response);
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

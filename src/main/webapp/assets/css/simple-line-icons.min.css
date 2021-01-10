@@ -1,0 +1,981 @@
+@font-face {
+	font-family: Simple-Line-Icons;
+	src: url(../fonts/Simple-Line-Iconsd41d.html?#iefix) format("embedded-opentype"), url(../fonts/Simple-Line-Icons.woff) format("woff"), url(../fonts/Simple-Line-Icons.html) format("truetype"), url(../fonts/Simple-Line-Icons-2.html#Simple-Line-Icons) format("svg");
+	font-weight: 400;
+	font-style: normal;
+}
+[data-icon]::before {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-variant: normal; font-weight: 400; content: attr(data-icon); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; speak: none;
+}
+.icon-action-redo {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-action-undo {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-anchor {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-arrow-down {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-arrow-left {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-arrow-right {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-arrow-up {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-badge {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-bag {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-ban {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-bar-chart {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-basket {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-basket-loaded {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-bell {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-book-open {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-briefcase {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-bubble {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-bubbles {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-bulb {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-calculator {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-calendar {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-call-end {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-call-in {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-call-out {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-camcorder {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-camera {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-check {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-chemistry {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-clock {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-close {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-cloud-download {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-cloud-upload {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-compass {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-control-end {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-control-forward {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-control-pause {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-control-play {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-control-rewind {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-control-start {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-credit-card {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-crop {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-cup {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-cursor {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-cursor-move {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-diamond {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-direction {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-directions {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-disc {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-dislike {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-doc {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-docs {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-drawer {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-drop {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-earphones {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-earphones-alt {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-emoticon-smile {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-energy {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-envelope {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-envelope-letter {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-envelope-open {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-equalizer {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-eye {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-eyeglasses {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-feed {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-film {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-fire {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-flag {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-folder {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-folder-alt {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-frame {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-game-controller {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-ghost {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-globe {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-globe-alt {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-graduation {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-graph {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-grid {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-handbag {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-heart {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-home {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-hourglass {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-info {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-key {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-layers {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-like {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-link {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-list {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-lock {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-lock-open {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-login {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-logout {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-loop {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-magic-wand {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-magnet {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-magnifier {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-magnifier-add {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-magnifier-remove {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-map {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-microphone {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-mouse {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-moustache {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-music-tone {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-music-tone-alt {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-note {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-notebook {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-paper-clip {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-paper-plane {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-pencil {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-picture {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-pie-chart {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-pin {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-plane {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-playlist {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-plus {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-pointer {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-power {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-present {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-printer {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-puzzle {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-question {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-refresh {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-reload {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-rocket {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-screen-desktop {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-screen-smartphone {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-screen-tablet {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-settings {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-share {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-share-alt {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-shield {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-shuffle {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-size-actual {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-size-fullscreen {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-social-dribbble {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-social-dropbox {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-social-facebook {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-social-tumblr {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-social-twitter {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-social-youtube {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-speech {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-speedometer {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-star {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-support {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-symbol-female {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-symbol-male {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-tag {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-target {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-trash {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-trophy {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-umbrella {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-user {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-user-female {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-user-follow {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-user-following {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-user-unfollow {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-users {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-vector {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-volume-1 {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-volume-2 {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-volume-off {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-wallet {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-wrench {
+	text-transform: none; line-height: 1; font-family: Simple-Line-Icons; font-style: normal; font-variant: normal; font-weight: 400; -webkit-font-smoothing: antialiased; speak: none;
+}
+.icon-user-female::before {
+	content: "\e000";
+}
+.icon-user-follow::before {
+	content: "\e002";
+}
+.icon-user-following::before {
+	content: "\e003";
+}
+.icon-user-unfollow::before {
+	content: "\e004";
+}
+.icon-trophy::before {
+	content: "\e006";
+}
+.icon-screen-smartphone::before {
+	content: "\e010";
+}
+.icon-screen-desktop::before {
+	content: "\e011";
+}
+.icon-plane::before {
+	content: "\e012";
+}
+.icon-notebook::before {
+	content: "\e013";
+}
+.icon-moustache::before {
+	content: "\e014";
+}
+.icon-mouse::before {
+	content: "\e015";
+}
+.icon-magnet::before {
+	content: "\e016";
+}
+.icon-energy::before {
+	content: "\e020";
+}
+.icon-emoticon-smile::before {
+	content: "\e021";
+}
+.icon-disc::before {
+	content: "\e022";
+}
+.icon-cursor-move::before {
+	content: "\e023";
+}
+.icon-crop::before {
+	content: "\e024";
+}
+.icon-credit-card::before {
+	content: "\e025";
+}
+.icon-chemistry::before {
+	content: "\e026";
+}
+.icon-user::before {
+	content: "\e005";
+}
+.icon-speedometer::before {
+	content: "\e007";
+}
+.icon-social-youtube::before {
+	content: "\e008";
+}
+.icon-social-twitter::before {
+	content: "\e009";
+}
+.icon-social-tumblr::before {
+	content: "\e00a";
+}
+.icon-social-facebook::before {
+	content: "\e00b";
+}
+.icon-social-dropbox::before {
+	content: "\e00c";
+}
+.icon-social-dribbble::before {
+	content: "\e00d";
+}
+.icon-shield::before {
+	content: "\e00e";
+}
+.icon-screen-tablet::before {
+	content: "\e00f";
+}
+.icon-magic-wand::before {
+	content: "\e017";
+}
+.icon-hourglass::before {
+	content: "\e018";
+}
+.icon-graduation::before {
+	content: "\e019";
+}
+.icon-ghost::before {
+	content: "\e01a";
+}
+.icon-game-controller::before {
+	content: "\e01b";
+}
+.icon-fire::before {
+	content: "\e01c";
+}
+.icon-eyeglasses::before {
+	content: "\e01d";
+}
+.icon-envelope-open::before {
+	content: "\e01e";
+}
+.icon-envelope-letter::before {
+	content: "\e01f";
+}
+.icon-bell::before {
+	content: "\e027";
+}
+.icon-badge::before {
+	content: "\e028";
+}
+.icon-anchor::before {
+	content: "\e029";
+}
+.icon-wallet::before {
+	content: "\e02a";
+}
+.icon-vector::before {
+	content: "\e02b";
+}
+.icon-speech::before {
+	content: "\e02c";
+}
+.icon-puzzle::before {
+	content: "\e02d";
+}
+.icon-printer::before {
+	content: "\e02e";
+}
+.icon-present::before {
+	content: "\e02f";
+}
+.icon-playlist::before {
+	content: "\e030";
+}
+.icon-pin::before {
+	content: "\e031";
+}
+.icon-picture::before {
+	content: "\e032";
+}
+.icon-map::before {
+	content: "\e033";
+}
+.icon-layers::before {
+	content: "\e034";
+}
+.icon-handbag::before {
+	content: "\e035";
+}
+.icon-globe-alt::before {
+	content: "\e036";
+}
+.icon-globe::before {
+	content: "\e037";
+}
+.icon-frame::before {
+	content: "\e038";
+}
+.icon-folder-alt::before {
+	content: "\e039";
+}
+.icon-film::before {
+	content: "\e03a";
+}
+.icon-feed::before {
+	content: "\e03b";
+}
+.icon-earphones-alt::before {
+	content: "\e03c";
+}
+.icon-earphones::before {
+	content: "\e03d";
+}
+.icon-drop::before {
+	content: "\e03e";
+}
+.icon-drawer::before {
+	content: "\e03f";
+}
+.icon-docs::before {
+	content: "\e040";
+}
+.icon-directions::before {
+	content: "\e041";
+}
+.icon-direction::before {
+	content: "\e042";
+}
+.icon-diamond::before {
+	content: "\e043";
+}
+.icon-cup::before {
+	content: "\e044";
+}
+.icon-compass::before {
+	content: "\e045";
+}
+.icon-call-out::before {
+	content: "\e046";
+}
+.icon-call-in::before {
+	content: "\e047";
+}
+.icon-call-end::before {
+	content: "\e048";
+}
+.icon-calculator::before {
+	content: "\e049";
+}
+.icon-bubbles::before {
+	content: "\e04a";
+}
+.icon-briefcase::before {
+	content: "\e04b";
+}
+.icon-book-open::before {
+	content: "\e04c";
+}
+.icon-basket-loaded::before {
+	content: "\e04d";
+}
+.icon-basket::before {
+	content: "\e04e";
+}
+.icon-bag::before {
+	content: "\e04f";
+}
+.icon-action-undo::before {
+	content: "\e050";
+}
+.icon-action-redo::before {
+	content: "\e051";
+}
+.icon-wrench::before {
+	content: "\e052";
+}
+.icon-umbrella::before {
+	content: "\e053";
+}
+.icon-trash::before {
+	content: "\e054";
+}
+.icon-tag::before {
+	content: "\e055";
+}
+.icon-support::before {
+	content: "\e056";
+}
+.icon-size-fullscreen::before {
+	content: "\e057";
+}
+.icon-size-actual::before {
+	content: "\e058";
+}
+.icon-shuffle::before {
+	content: "\e059";
+}
+.icon-share-alt::before {
+	content: "\e05a";
+}
+.icon-share::before {
+	content: "\e05b";
+}
+.icon-rocket::before {
+	content: "\e05c";
+}
+.icon-question::before {
+	content: "\e05d";
+}
+.icon-pie-chart::before {
+	content: "\e05e";
+}
+.icon-pencil::before {
+	content: "\e05f";
+}
+.icon-note::before {
+	content: "\e060";
+}
+.icon-music-tone-alt::before {
+	content: "\e061";
+}
+.icon-music-tone::before {
+	content: "\e062";
+}
+.icon-microphone::before {
+	content: "\e063";
+}
+.icon-loop::before {
+	content: "\e064";
+}
+.icon-logout::before {
+	content: "\e065";
+}
+.icon-login::before {
+	content: "\e066";
+}
+.icon-list::before {
+	content: "\e067";
+}
+.icon-like::before {
+	content: "\e068";
+}
+.icon-home::before {
+	content: "\e069";
+}
+.icon-grid::before {
+	content: "\e06a";
+}
+.icon-graph::before {
+	content: "\e06b";
+}
+.icon-equalizer::before {
+	content: "\e06c";
+}
+.icon-dislike::before {
+	content: "\e06d";
+}
+.icon-cursor::before {
+	content: "\e06e";
+}
+.icon-control-start::before {
+	content: "\e06f";
+}
+.icon-control-rewind::before {
+	content: "\e070";
+}
+.icon-control-play::before {
+	content: "\e071";
+}
+.icon-control-pause::before {
+	content: "\e072";
+}
+.icon-control-forward::before {
+	content: "\e073";
+}
+.icon-control-end::before {
+	content: "\e074";
+}
+.icon-calendar::before {
+	content: "\e075";
+}
+.icon-bulb::before {
+	content: "\e076";
+}
+.icon-bar-chart::before {
+	content: "\e077";
+}
+.icon-arrow-up::before {
+	content: "\e078";
+}
+.icon-arrow-right::before {
+	content: "\e079";
+}
+.icon-arrow-left::before {
+	content: "\e07a";
+}
+.icon-arrow-down::before {
+	content: "\e07b";
+}
+.icon-ban::before {
+	content: "\e07c";
+}
+.icon-bubble::before {
+	content: "\e07d";
+}
+.icon-camcorder::before {
+	content: "\e07e";
+}
+.icon-camera::before {
+	content: "\e07f";
+}
+.icon-check::before {
+	content: "\e080";
+}
+.icon-clock::before {
+	content: "\e081";
+}
+.icon-close::before {
+	content: "\e082";
+}
+.icon-cloud-download::before {
+	content: "\e083";
+}
+.icon-cloud-upload::before {
+	content: "\e084";
+}
+.icon-doc::before {
+	content: "\e085";
+}
+.icon-envelope::before {
+	content: "\e086";
+}
+.icon-eye::before {
+	content: "\e087";
+}
+.icon-flag::before {
+	content: "\e088";
+}
+.icon-folder::before {
+	content: "\e089";
+}
+.icon-heart::before {
+	content: "\e08a";
+}
+.icon-info::before {
+	content: "\e08b";
+}
+.icon-key::before {
+	content: "\e08c";
+}
+.icon-link::before {
+	content: "\e08d";
+}
+.icon-lock::before {
+	content: "\e08e";
+}
+.icon-lock-open::before {
+	content: "\e08f";
+}
+.icon-magnifier::before {
+	content: "\e090";
+}
+.icon-magnifier-add::before {
+	content: "\e091";
+}
+.icon-magnifier-remove::before {
+	content: "\e092";
+}
+.icon-paper-clip::before {
+	content: "\e093";
+}
+.icon-paper-plane::before {
+	content: "\e094";
+}
+.icon-plus::before {
+	content: "\e095";
+}
+.icon-pointer::before {
+	content: "\e096";
+}
+.icon-power::before {
+	content: "\e097";
+}
+.icon-refresh::before {
+	content: "\e098";
+}
+.icon-reload::before {
+	content: "\e099";
+}
+.icon-settings::before {
+	content: "\e09a";
+}
+.icon-star::before {
+	content: "\e09b";
+}
+.icon-symbol-female::before {
+	content: "\e09c";
+}
+.icon-symbol-male::before {
+	content: "\e09d";
+}
+.icon-target::before {
+	content: "\e09e";
+}
+.icon-volume-1::before {
+	content: "\e09f";
+}
+.icon-volume-2::before {
+	content: "\e0a0";
+}
+.icon-volume-off::before {
+	content: "\e0a1";
+}
+.icon-users::before {
+	content: "\e001";
+}

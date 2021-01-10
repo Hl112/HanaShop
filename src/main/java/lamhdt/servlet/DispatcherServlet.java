@@ -21,7 +21,12 @@ public class DispatcherServlet extends HttpServlet {
 
     private final String STARTUP_SERVLET = "StartupServlet";
     private final String LOGIN_SERVLET = "LoginServlet";
-    
+    private final String SEARCH_SERVLET = "SearchProductServlet";
+    // Cart
+    private final String ADDTOCART_SERVLET = "AddToCartServlet";
+    private final String VIEWCART_SERVLET = "ViewCartServlet";
+    private final String REMOVEFROMCART_SERVLET = "RemoveFromCartServlet";
+    private final String UPDATECART_SERVLET = "UpdateCartServlet";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -40,7 +45,18 @@ public class DispatcherServlet extends HttpServlet {
             if(button != null){
                 if(button.equals("Login"))
                     url = LOGIN_SERVLET;
+                if(button.equals("Search"))
+                    url = SEARCH_SERVLET;
+                if(button.equals("Add to cart"))
+                    url = ADDTOCART_SERVLET;
+                if(button.equals("View Cart"))
+                    url = VIEWCART_SERVLET;
+                if(button.equals("Remove from cart"))
+                    url = REMOVEFROMCART_SERVLET;
+                if(button.equals("Update Cart"))
+                    url = UPDATECART_SERVLET;
             }
+            
         } finally{
             RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);

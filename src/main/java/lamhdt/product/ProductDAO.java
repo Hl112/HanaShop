@@ -24,12 +24,11 @@ import lamhdt.utilities.DBHelper;
  * @author HL
  */
 public class ProductDAO implements Serializable {
-
+    
     private Connection conn;
     private PreparedStatement preStm;
     private ResultSet rs;
-    private AccountDTO info = null;
-
+    
     private void closeConnection() throws SQLException {
         if (rs != null) {
             rs.close();
@@ -41,12 +40,12 @@ public class ProductDAO implements Serializable {
             conn.close();
         }
     }
-
+    
     public List<ProductDTO> getAllProduct() throws NamingException, SQLException {
         List<ProductDTO> result = null;
         try {
             conn = DBHelper.makeConnection();
-            String sql = "SELECT productID,productName,productImage,productDescription,productPrice,quantity,createDate,categoryId,status FROM Product";
+            String sql = "SELECT productID,productName,productImage,productDescription,productPrice,quantity,createDate,categoryId,status FROM Product WHERE status = 1 AND quantity >0 ORDER BY createDate DESC";
             preStm = conn.prepareStatement(sql);
             rs = preStm.executeQuery();
             result = new ArrayList<>();
@@ -56,7 +55,7 @@ public class ProductDAO implements Serializable {
                 String name = rs.getNString("productName");
                 String img = rs.getString("productImage");
                 String description = rs.getNString("productDescription");
-                float price = rs.getFloat("productPrice");
+                int price = rs.getInt("productPrice");
                 int quantity = rs.getInt("quantity");
                 Date createDate = rs.getDate("createDate");
                 int categoryId = rs.getInt("categoryId");
@@ -70,31 +69,31 @@ public class ProductDAO implements Serializable {
         }
         return result;
     }
-
-    public float getMaxPrice(Connection conn) throws SQLException {
+    
+    public int getMaxPrice(Connection conn) throws SQLException {
         String sql = "SELECT MAX(productPrice) AS maxPrice FROM dbo.Product";
         preStm = conn.prepareStatement(sql);
         rs = preStm.executeQuery();
         if (rs.next()) {
-            return rs.getFloat("maxPrice");
+            return rs.getInt("maxPrice");
         }
         return 999999;
     }
-
-    public float getMinPrice(Connection conn) throws SQLException {
+    
+    public int getMinPrice(Connection conn) throws SQLException {
         String sql = "SELECT MIN(productPrice) AS minPrice FROM dbo.Product";
         preStm = conn.prepareStatement(sql);
         rs = preStm.executeQuery();
         if (rs.next()) {
-            return rs.getFloat("minPrice");
+            return rs.getInt("minPrice");
         }
         return 0;
     }
-
-    public List<ProductDTO> searchProduct(String searchName, int searchCategoryId, float min, float max) throws NamingException, SQLException {
+    
+    public List<ProductDTO> searchProduct(String searchName, int searchCategoryId, int min, int max) throws NamingException, SQLException {
         List<ProductDTO> result = null;
         String searchCategory = (searchCategoryId != -1) ? " AND categoryId = " + searchCategoryId : "";
-
+        
         try {
             conn = DBHelper.makeConnection();
             if (min == -1) {
@@ -115,7 +114,7 @@ public class ProductDAO implements Serializable {
                 String name = rs.getNString("productName");
                 String img = rs.getString("productImage");
                 String description = rs.getNString("productDescription");
-                float price = rs.getFloat("productPrice");
+                int price = rs.getInt("productPrice");
                 int quantity = rs.getInt("quantity");
                 Date createDate = rs.getDate("createDate");
                 int categoryId = rs.getInt("categoryId");
@@ -128,5 +127,67 @@ public class ProductDAO implements Serializable {
             closeConnection();
         }
         return result;
+    }
+    
+    public ProductDTO getProductById(int id) throws NamingException, SQLException {
+        ProductDTO dto = null;
+        try {
+            conn = DBHelper.makeConnection();
+            String sql = "SELECT productName,productImage,productDescription,productPrice,quantity,createDate,categoryId,status FROM Product WHERE productID = ?";
+            preStm = conn.prepareStatement(sql);
+            preStm.setInt(1, id);
+            rs = preStm.executeQuery();
+            if (rs.next()) {
+                CategoryDAO dao = new CategoryDAO();
+                String name = rs.getNString("productName");
+                String img = rs.getString("productImage");
+                String description = rs.getNString("productDescription");
+                int price = rs.getInt("productPrice");
+                int quantity = rs.getInt("quantity");
+                Date createDate = rs.getDate("createDate");
+                int categoryId = rs.getInt("categoryId");
+                boolean status = rs.getBoolean("status");
+                CategoryDTO category = dao.getCategoryById(categoryId, conn);
+                dto = new ProductDTO(id, name, img, description, price, quantity, createDate, category, status);
+            }
+        } finally {
+            closeConnection();
+        }
+        return dto;
+    }
+    
+    public boolean removeProductById(int id) throws SQLException, NamingException {
+        boolean check = false;
+        try {
+            conn = DBHelper.makeConnection();
+            String sql = "UPDATE PRODUCT SET status = 0 WHERE productId = ?";
+            preStm = conn.prepareStatement(sql);
+            preStm.setInt(1, id);
+            check = preStm.executeUpdate() > 0;
+        } finally {
+            closeConnection();
+        }
+        return check;
+    }
+    
+    public boolean addProduct(ProductDTO dto) throws SQLException, NamingException {
+        boolean check = false;
+        try {
+            conn = DBHelper.makeConnection();
+            String sql = "INSERT INTO Product(productName,productImage,productDescription,productPrice,quantity,createDate,categoryId,status)\n"
+                    + "VALUES(?,?,?,?,?,GETDATE(),?,?)";
+            preStm = conn.prepareStatement(sql);
+            preStm.setNString(1, dto.getProductName());
+            preStm.setString(2, dto.getProductImage());
+            preStm.setNString(3, dto.getProductDescription());
+            preStm.setInt(4, dto.getProductPrice());
+            preStm.setInt(5, dto.getQuantity());
+            preStm.setInt(6, dto.getCategoryId());
+            preStm.setBoolean(7, true);
+            check = preStm.executeUpdate() > 0;
+        } finally {
+            closeConnection();
+        }
+        return check;
     }
 }

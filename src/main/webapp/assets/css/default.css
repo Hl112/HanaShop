@@ -1,0 +1,660 @@
+a {
+	color: rgb(63, 68, 74);
+}
+a:active {
+	color: rgb(50, 197, 210);
+}
+a:hover {
+	color: rgb(50, 197, 210);
+}
+a:focus {
+	color: rgb(50, 197, 210);
+}
+.c-theme-link:focus {
+	color: rgb(50, 197, 210) !important;
+}
+.c-theme-link:active {
+	color: rgb(50, 197, 210) !important;
+}
+.c-theme-link:hover {
+	color: rgb(50, 197, 210) !important;
+}
+.c-theme-link:focus > i {
+	color: rgb(50, 197, 210) !important;
+}
+.c-theme-link:active > i {
+	color: rgb(50, 197, 210) !important;
+}
+.c-theme-link:hover > i {
+	color: rgb(50, 197, 210) !important;
+}
+.c-theme-link.c-active {
+	color: rgb(50, 197, 210) !important;
+}
+.c-theme-link.c-active > i {
+	color: rgb(50, 197, 210) !important;
+}
+.c-theme-nav li:focus > a:not(.btn) {
+	color: rgb(50, 197, 210) !important;
+}
+.c-theme-nav li:active > a:not(.btn) {
+	color: rgb(50, 197, 210) !important;
+}
+.c-theme-nav li:hover > a:not(.btn) {
+	color: rgb(50, 197, 210) !important;
+}
+.c-theme-nav li:focus > .c-quick-sidebar-toggler > .c-line {
+	background: rgb(50, 197, 210) !important;
+}
+.c-theme-nav li:active > .c-quick-sidebar-toggler > .c-line {
+	background: rgb(50, 197, 210) !important;
+}
+.c-theme-nav li:hover > .c-quick-sidebar-toggler > .c-line {
+	background: rgb(50, 197, 210) !important;
+}
+.c-theme-nav li.c-active {
+	color: rgb(50, 197, 210) !important;
+}
+.c-theme-nav li.c-active > a:not(.btn) {
+	color: rgb(50, 197, 210) !important;
+}
+.c-theme-nav li.c-active > .c-quick-sidebar-toggler > .c-line {
+	background: rgb(50, 197, 210) !important;
+}
+.c-theme-nav > li > .dropdown-menu.c-menu-type-mega > .nav.nav-tabs > li:hover > a {
+	color: rgb(50, 197, 210) !important;
+}
+.c-theme-nav > li > .dropdown-menu.c-menu-type-mega > .nav.nav-tabs > li.active {
+	border-bottom-color: rgb(50, 197, 210) !important; border-bottom-width: 1px !important; border-bottom-style: solid !important;
+}
+.c-theme-nav > li > .dropdown-menu.c-menu-type-mega > .nav.nav-tabs > li.active > a {
+	color: rgb(50, 197, 210) !important;
+}
+.c-theme-nav.nav.nav-tabs > li:hover > a {
+	color: rgb(50, 197, 210) !important;
+}
+.c-theme-nav.nav.nav-tabs > li.active {
+	border-bottom-color: rgb(50, 197, 210) !important; border-bottom-width: 1px !important; border-bottom-style: solid !important;
+}
+.c-theme-nav.nav.nav-tabs > li.active > a {
+	color: rgb(50, 197, 210) !important;
+}
+.c-theme-ul > li:focus > a:not(.btn) {
+	color: rgb(50, 197, 210) !important;
+}
+.c-theme-ul > li:active > a:not(.btn) {
+	color: rgb(50, 197, 210) !important;
+}
+.c-theme-ul > li:hover > a:not(.btn) {
+	color: rgb(50, 197, 210) !important;
+}
+.c-theme-ul > li:focus > a:not(.btn) > i {
+	color: rgb(50, 197, 210) !important;
+}
+.c-theme-ul > li:active > a:not(.btn) > i {
+	color: rgb(50, 197, 210) !important;
+}
+.c-theme-ul > li:hover > a:not(.btn) > i {
+	color: rgb(50, 197, 210) !important;
+}
+.c-theme-ul > li:focus > button > .c-line {
+	background: rgb(50, 197, 210) !important;
+}
+.c-theme-ul > li:active > button > .c-line {
+	background: rgb(50, 197, 210) !important;
+}
+.c-theme-ul > li:hover > button > .c-line {
+	background: rgb(50, 197, 210) !important;
+}
+.c-theme-ul > li.active {
+	color: rgb(50, 197, 210) !important;
+}
+.c-theme-ul > li.c-active {
+	color: rgb(50, 197, 210) !important;
+}
+.c-theme-ul > li.active > a:not(.btn) {
+	color: rgb(50, 197, 210) !important;
+}
+.c-theme-ul > li.c-active > a:not(.btn) {
+	color: rgb(50, 197, 210) !important;
+}
+.c-theme-ul > li.active > a:not(.btn) > i {
+	color: rgb(50, 197, 210) !important;
+}
+.c-theme-ul > li.c-active > a:not(.btn) > i {
+	color: rgb(50, 197, 210) !important;
+}
+.c-theme-ul-bg > li {
+	background: rgb(50, 197, 210) !important; color: rgb(255, 255, 255);
+}
+.c-theme-font {
+	color: rgb(50, 197, 210) !important;
+}
+.c-theme-color {
+	color: rgb(50, 197, 210) !important;
+}
+.c-theme-font > i {
+	color: rgb(50, 197, 210) !important;
+}
+.c-theme-color > i {
+	color: rgb(50, 197, 210) !important;
+}
+.c-theme-font-hover:hover {
+	color: rgb(50, 197, 210) !important;
+}
+.c-theme-bg {
+	background-color: rgb(50, 197, 210) !important;
+}
+.c-theme-bg.c-theme-darken {
+	background-color: rgb(38, 161, 171) !important;
+}
+.c-theme-bg-after::after {
+	background-color: rgb(50, 197, 210) !important;
+}
+.c-theme-bg-before::before {
+	background-color: rgb(50, 197, 210) !important;
+}
+.c-theme-border-after::after {
+	border-color: rgb(50, 197, 210) !important;
+}
+.c-theme-border-before::before {
+	border-color: rgb(50, 197, 210) !important;
+}
+.c-theme-bg-on-hover:hover {
+	background-color: rgb(50, 197, 210) !important;
+}
+.c-theme-border {
+	border-color: rgb(50, 197, 210) !important;
+}
+.c-theme-on-hover:hover {
+	color: rgb(50, 197, 210) !important;
+}
+.c-theme-bg-parent-hover:hover .c-theme-bg-on-parent-hover {
+	background-color: rgb(50, 197, 210) !important;
+}
+.c-theme-border {
+	border-color: rgb(50, 197, 210);
+}
+.c-theme-border-top {
+	border-top-color: rgb(50, 197, 210);
+}
+.c-theme-border-bottom {
+	border-bottom-color: rgb(50, 197, 210) !important;
+}
+.c-theme-border-left {
+	border-left-color: rgb(50, 197, 210);
+}
+.c-theme-border-right {
+	border-right-color: rgb(50, 197, 210);
+}
+.c-content-iconlist-1.c-theme > li:hover i {
+	background: rgb(50, 197, 210); color: rgb(255, 255, 255);
+}
+.c-content-ver-nav .c-menu.c-theme > li::before {
+	color: rgb(50, 197, 210);
+}
+.c-content-ver-nav .c-menu.c-theme.c-arrow-dot > li::before {
+	background: rgb(50, 197, 210);
+}
+.c-content-pagination.c-theme > li:hover > a {
+	background: rgb(50, 197, 210); border-color: rgb(50, 197, 210); color: rgb(255, 255, 255);
+}
+.c-content-pagination.c-theme > li:hover > a > i {
+	color: rgb(255, 255, 255);
+}
+.c-content-pagination.c-theme > li.c-active > span {
+	background: rgb(50, 197, 210); border-color: rgb(50, 197, 210); color: rgb(255, 255, 255);
+}
+.c-content-pagination.c-theme > li.c-active > a {
+	background: rgb(50, 197, 210); border-color: rgb(50, 197, 210); color: rgb(255, 255, 255);
+}
+.c-content-pagination.c-theme > li.c-active > span > i {
+	color: rgb(255, 255, 255);
+}
+.c-content-pagination.c-theme > li.c-active > a > i {
+	color: rgb(255, 255, 255);
+}
+.c-theme-btn.btn {
+	background: rgb(50, 197, 210); border-color: rgb(50, 197, 210); color: rgb(255, 255, 255);
+}
+.c-theme-btn.btn.btn-no-focus:focus {
+	background: rgb(50, 197, 210); border-color: rgb(50, 197, 210); color: rgb(255, 255, 255);
+}
+.c-theme-btn.btn.btn-no-focus.focus {
+	background: rgb(50, 197, 210); border-color: rgb(50, 197, 210); color: rgb(255, 255, 255);
+}
+.c-theme-btn.btn.btn-no-focus:hover {
+	background: rgb(39, 168, 180); border-color: rgb(39, 168, 180); color: rgb(255, 255, 255);
+}
+.c-theme-btn.btn:hover {
+	background: rgb(39, 168, 180); border-color: rgb(39, 168, 180); color: rgb(255, 255, 255);
+}
+.c-theme-btn.btn.btn-no-focus:active {
+	background: rgb(39, 168, 180); border-color: rgb(39, 168, 180); color: rgb(255, 255, 255);
+}
+.c-theme-btn.btn:active {
+	background: rgb(39, 168, 180); border-color: rgb(39, 168, 180); color: rgb(255, 255, 255);
+}
+.c-theme-btn.btn.active {
+	background: rgb(39, 168, 180); border-color: rgb(39, 168, 180); color: rgb(255, 255, 255);
+}
+.open > .c-theme-btn.btn.dropdown-toggle {
+	background: rgb(39, 168, 180); border-color: rgb(39, 168, 180); color: rgb(255, 255, 255);
+}
+.c-theme-btn.btn:active {
+	background-image: none;
+}
+.c-theme-btn.btn.active {
+	background-image: none;
+}
+.open > .c-theme-btn.btn.dropdown-toggle {
+	background-image: none;
+}
+.c-theme-btn.btn.disabled {
+	background: rgb(50, 197, 210); border-color: rgb(50, 197, 210);
+}
+.c-theme-btn.btn.disabled:hover {
+	background: rgb(50, 197, 210); border-color: rgb(50, 197, 210);
+}
+:not(.btn-no-focus).c-theme-btn.btn.disabled:focus {
+	background: rgb(50, 197, 210); border-color: rgb(50, 197, 210);
+}
+:not(.btn-no-focus).c-theme-btn.btn.disabled.focus {
+	background: rgb(50, 197, 210); border-color: rgb(50, 197, 210);
+}
+.c-theme-btn.btn.disabled:active {
+	background: rgb(50, 197, 210); border-color: rgb(50, 197, 210);
+}
+.c-theme-btn.btn.disabled.active {
+	background: rgb(50, 197, 210); border-color: rgb(50, 197, 210);
+}
+[disabled].c-theme-btn.btn {
+	background: rgb(50, 197, 210); border-color: rgb(50, 197, 210);
+}
+[disabled].c-theme-btn.btn:hover {
+	background: rgb(50, 197, 210); border-color: rgb(50, 197, 210);
+}
+[disabled]:not(.btn-no-focus).c-theme-btn.btn:focus {
+	background: rgb(50, 197, 210); border-color: rgb(50, 197, 210);
+}
+[disabled]:not(.btn-no-focus).c-theme-btn.btn.focus {
+	background: rgb(50, 197, 210); border-color: rgb(50, 197, 210);
+}
+[disabled].c-theme-btn.btn:active {
+	background: rgb(50, 197, 210); border-color: rgb(50, 197, 210);
+}
+[disabled].c-theme-btn.btn.active {
+	background: rgb(50, 197, 210); border-color: rgb(50, 197, 210);
+}
+fieldset[disabled] .c-theme-btn.btn {
+	background: rgb(50, 197, 210); border-color: rgb(50, 197, 210);
+}
+fieldset[disabled] .c-theme-btn.btn:hover {
+	background: rgb(50, 197, 210); border-color: rgb(50, 197, 210);
+}
+fieldset[disabled] :not(.btn-no-focus).c-theme-btn.btn:focus {
+	background: rgb(50, 197, 210); border-color: rgb(50, 197, 210);
+}
+fieldset[disabled] :not(.btn-no-focus).c-theme-btn.btn.focus {
+	background: rgb(50, 197, 210); border-color: rgb(50, 197, 210);
+}
+fieldset[disabled] .c-theme-btn.btn:active {
+	background: rgb(50, 197, 210); border-color: rgb(50, 197, 210);
+}
+fieldset[disabled] .c-theme-btn.btn.active {
+	background: rgb(50, 197, 210); border-color: rgb(50, 197, 210);
+}
+.c-theme-btn.btn .badge {
+	background: rgb(255, 255, 255); color: rgb(50, 197, 210);
+}
+.c-theme-btn.c-btn-border-1x {
+	background: none; border-width: 1px; border-color: rgb(50, 197, 210); color: rgb(50, 197, 210);
+}
+.c-theme-btn.c-btn-border-1x.btn-no-focus:focus {
+	background: none; border-color: rgb(50, 197, 210); color: rgb(50, 197, 210);
+}
+.c-theme-btn.c-btn-border-1x.btn-no-focus.focus {
+	background: none; border-color: rgb(50, 197, 210); color: rgb(50, 197, 210);
+}
+.c-theme-btn.c-btn-border-1x.btn-no-focus:hover {
+	background: rgb(50, 197, 210); border-color: rgb(50, 197, 210); color: rgb(255, 255, 255);
+}
+.c-theme-btn.c-btn-border-1x:hover {
+	background: rgb(50, 197, 210); border-color: rgb(50, 197, 210); color: rgb(255, 255, 255);
+}
+.c-theme-btn.c-btn-border-1x.btn-no-focus:active {
+	background: rgb(50, 197, 210); border-color: rgb(50, 197, 210); color: rgb(255, 255, 255);
+}
+.c-theme-btn.c-btn-border-1x:active {
+	background: rgb(50, 197, 210); border-color: rgb(50, 197, 210); color: rgb(255, 255, 255);
+}
+.c-theme-btn.c-btn-border-1x.active {
+	background: rgb(50, 197, 210); border-color: rgb(50, 197, 210); color: rgb(255, 255, 255);
+}
+.open > .c-theme-btn.c-btn-border-1x.dropdown-toggle {
+	background: rgb(50, 197, 210); border-color: rgb(50, 197, 210); color: rgb(255, 255, 255);
+}
+.c-theme-btn.c-btn-border-1x:active {
+	background-image: none;
+}
+.c-theme-btn.c-btn-border-1x.active {
+	background-image: none;
+}
+.open > .c-theme-btn.c-btn-border-1x.dropdown-toggle {
+	background-image: none;
+}
+.c-theme-btn.c-btn-border-1x.disabled {
+	background: none; border-color: rgb(50, 197, 210);
+}
+.c-theme-btn.c-btn-border-1x.disabled:hover {
+	background: none; border-color: rgb(50, 197, 210);
+}
+:not(.btn-no-focus).c-theme-btn.c-btn-border-1x.disabled:focus {
+	background: none; border-color: rgb(50, 197, 210);
+}
+:not(.btn-no-focus).c-theme-btn.c-btn-border-1x.disabled.focus {
+	background: none; border-color: rgb(50, 197, 210);
+}
+.c-theme-btn.c-btn-border-1x.disabled:active {
+	background: none; border-color: rgb(50, 197, 210);
+}
+.c-theme-btn.c-btn-border-1x.disabled.active {
+	background: none; border-color: rgb(50, 197, 210);
+}
+[disabled].c-theme-btn.c-btn-border-1x {
+	background: none; border-color: rgb(50, 197, 210);
+}
+[disabled].c-theme-btn.c-btn-border-1x:hover {
+	background: none; border-color: rgb(50, 197, 210);
+}
+[disabled]:not(.btn-no-focus).c-theme-btn.c-btn-border-1x:focus {
+	background: none; border-color: rgb(50, 197, 210);
+}
+[disabled]:not(.btn-no-focus).c-theme-btn.c-btn-border-1x.focus {
+	background: none; border-color: rgb(50, 197, 210);
+}
+[disabled].c-theme-btn.c-btn-border-1x:active {
+	background: none; border-color: rgb(50, 197, 210);
+}
+[disabled].c-theme-btn.c-btn-border-1x.active {
+	background: none; border-color: rgb(50, 197, 210);
+}
+fieldset[disabled] .c-theme-btn.c-btn-border-1x {
+	background: none; border-color: rgb(50, 197, 210);
+}
+fieldset[disabled] .c-theme-btn.c-btn-border-1x:hover {
+	background: none; border-color: rgb(50, 197, 210);
+}
+fieldset[disabled] :not(.btn-no-focus).c-theme-btn.c-btn-border-1x:focus {
+	background: none; border-color: rgb(50, 197, 210);
+}
+fieldset[disabled] :not(.btn-no-focus).c-theme-btn.c-btn-border-1x.focus {
+	background: none; border-color: rgb(50, 197, 210);
+}
+fieldset[disabled] .c-theme-btn.c-btn-border-1x:active {
+	background: none; border-color: rgb(50, 197, 210);
+}
+fieldset[disabled] .c-theme-btn.c-btn-border-1x.active {
+	background: none; border-color: rgb(50, 197, 210);
+}
+.c-theme-btn.c-btn-border-1x .badge {
+	background: rgb(50, 197, 210);
+}
+.c-theme-btn.c-btn-border-2x {
+	background: none; border-width: 2px; border-color: rgb(50, 197, 210); color: rgb(50, 197, 210);
+}
+.c-theme-btn.c-btn-border-2x.btn-no-focus:focus {
+	background: none; border-color: rgb(50, 197, 210); color: rgb(50, 197, 210);
+}
+.c-theme-btn.c-btn-border-2x.btn-no-focus.focus {
+	background: none; border-color: rgb(50, 197, 210); color: rgb(50, 197, 210);
+}
+.c-theme-btn.c-btn-border-2x.btn-no-focus:hover {
+	background: rgb(50, 197, 210); border-color: rgb(50, 197, 210); color: rgb(255, 255, 255);
+}
+.c-theme-btn.c-btn-border-2x:hover {
+	background: rgb(50, 197, 210); border-color: rgb(50, 197, 210); color: rgb(255, 255, 255);
+}
+.c-theme-btn.c-btn-border-2x.btn-no-focus:active {
+	background: rgb(50, 197, 210); border-color: rgb(50, 197, 210); color: rgb(255, 255, 255);
+}
+.c-theme-btn.c-btn-border-2x:active {
+	background: rgb(50, 197, 210); border-color: rgb(50, 197, 210); color: rgb(255, 255, 255);
+}
+.c-theme-btn.c-btn-border-2x.active {
+	background: rgb(50, 197, 210); border-color: rgb(50, 197, 210); color: rgb(255, 255, 255);
+}
+.open > .c-theme-btn.c-btn-border-2x.dropdown-toggle {
+	background: rgb(50, 197, 210); border-color: rgb(50, 197, 210); color: rgb(255, 255, 255);
+}
+.c-theme-btn.c-btn-border-2x:active {
+	background-image: none;
+}
+.c-theme-btn.c-btn-border-2x.active {
+	background-image: none;
+}
+.open > .c-theme-btn.c-btn-border-2x.dropdown-toggle {
+	background-image: none;
+}
+.c-theme-btn.c-btn-border-2x.disabled {
+	background: none; border-color: rgb(50, 197, 210);
+}
+.c-theme-btn.c-btn-border-2x.disabled:hover {
+	background: none; border-color: rgb(50, 197, 210);
+}
+:not(.btn-no-focus).c-theme-btn.c-btn-border-2x.disabled:focus {
+	background: none; border-color: rgb(50, 197, 210);
+}
+:not(.btn-no-focus).c-theme-btn.c-btn-border-2x.disabled.focus {
+	background: none; border-color: rgb(50, 197, 210);
+}
+.c-theme-btn.c-btn-border-2x.disabled:active {
+	background: none; border-color: rgb(50, 197, 210);
+}
+.c-theme-btn.c-btn-border-2x.disabled.active {
+	background: none; border-color: rgb(50, 197, 210);
+}
+[disabled].c-theme-btn.c-btn-border-2x {
+	background: none; border-color: rgb(50, 197, 210);
+}
+[disabled].c-theme-btn.c-btn-border-2x:hover {
+	background: none; border-color: rgb(50, 197, 210);
+}
+[disabled]:not(.btn-no-focus).c-theme-btn.c-btn-border-2x:focus {
+	background: none; border-color: rgb(50, 197, 210);
+}
+[disabled]:not(.btn-no-focus).c-theme-btn.c-btn-border-2x.focus {
+	background: none; border-color: rgb(50, 197, 210);
+}
+[disabled].c-theme-btn.c-btn-border-2x:active {
+	background: none; border-color: rgb(50, 197, 210);
+}
+[disabled].c-theme-btn.c-btn-border-2x.active {
+	background: none; border-color: rgb(50, 197, 210);
+}
+fieldset[disabled] .c-theme-btn.c-btn-border-2x {
+	background: none; border-color: rgb(50, 197, 210);
+}
+fieldset[disabled] .c-theme-btn.c-btn-border-2x:hover {
+	background: none; border-color: rgb(50, 197, 210);
+}
+fieldset[disabled] :not(.btn-no-focus).c-theme-btn.c-btn-border-2x:focus {
+	background: none; border-color: rgb(50, 197, 210);
+}
+fieldset[disabled] :not(.btn-no-focus).c-theme-btn.c-btn-border-2x.focus {
+	background: none; border-color: rgb(50, 197, 210);
+}
+fieldset[disabled] .c-theme-btn.c-btn-border-2x:active {
+	background: none; border-color: rgb(50, 197, 210);
+}
+fieldset[disabled] .c-theme-btn.c-btn-border-2x.active {
+	background: none; border-color: rgb(50, 197, 210);
+}
+.c-theme-btn.c-btn-border-2x .badge {
+	background: rgb(50, 197, 210);
+}
+.c-theme.form-control:focus {
+	border-color: rgb(50, 197, 210) !important;
+}
+.c-theme.form-control:active {
+	border-color: rgb(50, 197, 210) !important;
+}
+.c-theme.form-control.active {
+	border-color: rgb(50, 197, 210) !important;
+}
+.c-content-line-icon.c-theme {
+	background-image: url("../base/img/content/line-icons/default.html");
+}
+.c-content-list-1.c-theme.c-separator-dot > li::before {
+	background: rgb(50, 197, 210);
+}
+.c-content-list-1.c-theme > li::before {
+	background: rgb(50, 197, 210);
+}
+.c-content-tab-1.c-theme .nav > li:hover > a {
+	border-bottom-color: rgb(50, 197, 210);
+}
+.c-content-tab-1.c-theme .nav > li:focus > a {
+	border-bottom-color: rgb(50, 197, 210);
+}
+.c-content-tab-1.c-theme .nav > li:active > a {
+	border-bottom-color: rgb(50, 197, 210);
+}
+.c-content-tab-1.c-theme .nav > li.active > a {
+	border-bottom-color: rgb(50, 197, 210);
+}
+.c-content-tab-1.c-theme .nav.nav-justified > li:hover > a {
+	border-bottom-color: rgb(50, 197, 210);
+}
+.c-content-tab-1.c-theme .nav.nav-justified > li:focus > a {
+	border-bottom-color: rgb(50, 197, 210);
+}
+.c-content-tab-1.c-theme .nav.nav-justified > li:active > a {
+	border-bottom-color: rgb(50, 197, 210);
+}
+.c-content-tab-1.c-theme .nav.nav-justified > li.active > a {
+	border-bottom-color: rgb(50, 197, 210);
+}
+.c-content-tab-2.c-theme > ul > li.active > a > .c-title {
+	color: rgb(50, 197, 210);
+}
+.c-content-tab-2.c-theme > ul > li:hover > a > .c-title {
+	color: rgb(50, 197, 210);
+}
+.c-content-tab-2.c-theme > ul > li.active > a > .c-content-line-icon {
+	background-image: url("../base/img/content/line-icons/default.html");
+}
+.c-content-tab-2.c-theme > ul > li:hover > a > .c-content-line-icon {
+	background-image: url("../base/img/content/line-icons/default.html");
+}
+.c-content-tab-5.c-theme .c-nav-tab > li.active > a {
+	color: rgb(255, 255, 255); background-color: rgb(50, 197, 210);
+}
+.c-content-tab-5.c-theme .c-nav-tab > li a:hover {
+	color: rgb(255, 255, 255); background-color: rgb(50, 197, 210);
+}
+.c-content-tab-5.c-theme .c-nav-tab.c-arrow a:hover::after {
+	border-left-color: rgb(50, 197, 210);
+}
+.c-content-tab-5.c-theme .c-nav-tab.c-arrow .active > a::after {
+	border-left-color: rgb(50, 197, 210);
+}
+.c-content-accordion-1.c-theme .panel > .panel-heading > .panel-title > a {
+	background-color: rgb(50, 197, 210);
+}
+.c-content-accordion-1.c-theme .panel > .panel-heading > .panel-title > a.collapsed {
+	background-color: rgb(255, 255, 255);
+}
+.c-content-accordion-1.c-theme .panel > .panel-heading > .panel-title > a.collapsed:hover {
+	background-color: rgb(50, 197, 210);
+}
+.c-content-accordion-1.c-theme .panel > .panel-heading > .panel-title > a.collapsed:focus {
+	background-color: rgb(50, 197, 210);
+}
+.c-content-accordion-1.c-theme .panel > .panel-collapse > .panel-body {
+	background-color: rgb(50, 197, 210);
+}
+.c-mega-menu-onepage-dots.c-theme .c-onepage-dots-nav > li.c-onepage-link:hover > a {
+	background: rgba(50, 197, 210, 0.9);
+}
+.c-mega-menu-onepage-dots.c-theme .c-onepage-dots-nav > li.c-onepage-link.c-active > a {
+	background: rgba(50, 197, 210, 0.9);
+}
+.c-mega-menu-onepage-dots.c-theme .c-onepage-dots-nav > li.c-onepage-link.active > a {
+	background: rgba(50, 197, 210, 0.9);
+}
+.c-layout-sidebar-menu.c-theme .c-sidebar-menu li.c-active > a {
+	transition:0.2s; color: rgb(50, 197, 210);
+}
+.c-layout-sidebar-menu.c-theme .c-sidebar-menu li.c-active > a > .c-arrow {
+	color: rgb(50, 197, 210);
+}
+.c-layout-sidebar-menu.c-theme .c-sidebar-menu li .c-dropdown-menu > li:hover > a {
+	color: rgb(50, 197, 210);
+}
+.c-layout-sidebar-menu.c-theme .c-sidebar-menu.c-option-2 > li.c-active > a {
+	transition:0.2s; color: rgb(255, 255, 255); background-color: rgb(50, 197, 210);
+}
+.c-layout-sidebar-menu.c-theme .c-sidebar-menu.c-option-2 > li.c-active > a > .c-arrow {
+	color: rgb(255, 255, 255);
+}
+.c-content-title-4.c-theme .c-line-strike::before {
+	border-top-color: rgb(50, 197, 210); border-top-width: 1px; border-top-style: solid;
+}
+.owl-carousel.c-theme .owl-controls .owl-dot {
+	background: rgb(225, 225, 225);
+}
+.owl-carousel.c-theme .owl-controls .owl-dot:hover {
+	background: rgb(255, 255, 255);
+}
+.owl-carousel.c-theme .owl-controls .owl-dot.active {
+	background: rgb(50, 197, 210);
+}
+.cbp-l-filters-button .cbp-filter-counter {
+	background-color: rgb(50, 197, 210);
+}
+.cbp-l-filters-buttonCenter .cbp-filter-counter {
+	background-color: rgb(50, 197, 210);
+}
+.cbp-l-filters-button .cbp-filter-counter::before {
+	border-top-color: rgb(50, 197, 210); border-top-width: 4px; border-top-style: solid;
+}
+.cbp-l-filters-buttonCenter .cbp-filter-counter::before {
+	border-top-color: rgb(50, 197, 210); border-top-width: 4px; border-top-style: solid;
+}
+.cbp-l-filters-alignCenter .cbp-filter-item.cbp-filter-item-active {
+	color: rgb(50, 197, 210);
+}
+.cbp-l-filters-text .cbp-filter-item.cbp-filter-item-active {
+	color: rgb(50, 197, 210);
+}
+.cbp-l-filters-alignCenter .cbp-filter-counter {
+	background: 0px 0px rgb(50, 197, 210);
+}
+.cbp-l-filters-text .cbp-filter-counter {
+	background: 0px 0px rgb(50, 197, 210);
+}
+.cbp-l-filters-alignCenter .cbp-filter-counter::before {
+	border-top-color: rgb(50, 197, 210); border-top-width: 4px; border-top-style: solid;
+}
+.cbp-l-filters-text .cbp-filter-counter::before {
+	border-top-color: rgb(50, 197, 210); border-top-width: 4px; border-top-style: solid;
+}
+.cbp-l-filters-underline .cbp-filter-item.cbp-filter-item-active {
+	border-bottom-color: rgb(50, 197, 210);
+}
+.cbp-l-project-desc-title::before {
+	background: rgb(50, 197, 210);
+}
+.cbp-l-project-details-title::before {
+	background: rgb(50, 197, 210);
+}
+.tp-bullets.round.c-theme .bullet {
+	margin-right: 5px;
+}
+.tp-bullets.round.c-theme .bullet.selected {
+	background: rgb(50, 197, 210);
+}
+.tp-banner-container.c-theme .tparrows.circle {
+	background-image: url("../base/img/content/line-icons/default.html");
+}
