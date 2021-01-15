@@ -78,14 +78,35 @@
                                     <th colspan="4">Total:</th>
                                     <th><span class="total">${total}</span>đ</th>
                                     <th>
-                                        <input type="submit" value="Remove from cart" data-toggle="modal" data-target="#confirm-delete" class="btn btn-danger load-modal" name="btAction"/>
+                                        <a href="#" value="Remove from cart" data-toggle="modal" data-target="#basicModal" class="btn btn-danger">Remove from cart</a>
                                         <input type="submit" value="Payment" name="btAction" class="btn btn-success"/>
+
+                                        <!-- Modal Confirm -->
+                                        <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title" id="myModalLabel">Delete Confirm</h4>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <h3>Delete selected row?</h3>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <input type="submit" value="Remove from cart" class="btn btn-danger load-modal" name="btAction"/>
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </th>
                                 </tr>
                             </form>
                             </tbody>
                         </table><Br/>
-                        
+
                     </c:if>
                 </div>
                 <c:if test="${empty list}">
@@ -102,82 +123,7 @@
 
             </div>
         </div>
-        <script>
-            $('.btn-number').click(function (e) {
-                e.preventDefault();
 
-                fieldName = $(this).attr('data-field');
-                type = $(this).attr('data-type');
-                var input = $("input[name='" + fieldName + "']");
-                var currentVal = parseInt(input.val());
-                if (!isNaN(currentVal)) {
-                    if (type == 'minus') {
-
-                        if (currentVal > input.attr('min')) {
-                            input.val(currentVal - 1).change();
-                        }
-                        if (parseInt(input.val()) == input.attr('min')) {
-                            $(this).attr('disabled', true);
-                        }
-
-                    } else if (type == 'plus') {
-
-                        if (currentVal < input.attr('max')) {
-                            input.val(currentVal + 1).change();
-                        }
-                        if (parseInt(input.val()) == input.attr('max')) {
-                            $(this).attr('disabled', true);
-                        }
-
-                    }
-                } else {
-                    input.val(0);
-                }
-            });
-            $('.input-number').focusin(function () {
-                $(this).data('oldValue', $(this).val());
-            });
-            $('.input-number').change(function () {
-
-                minValue = parseInt($(this).attr('min'));
-                maxValue = parseInt($(this).attr('max'));
-                valueCurrent = parseInt($(this).val());
-
-                name = $(this).attr('name');
-                if (valueCurrent >= minValue) {
-                    $(".btn-number[data-type='minus'][data-field='" + name + "']").removeAttr('disabled')
-                } else {
-                    alert('Sorry, the minimum value was reached');
-                    $(this).val($(this).data('oldValue'));
-                }
-                if (valueCurrent <= maxValue) {
-                    $(".btn-number[data-type='plus'][data-field='" + name + "']").removeAttr('disabled')
-                } else {
-                    alert('Sorry, the maximum value was reached');
-                    $(this).val($(this).data('oldValue'));
-                }
-
-
-            });
-            $(".input-number").keydown(function (e) {
-                // Allow: backspace, delete, tab, escape, enter and .
-                if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 190]) !== -1 ||
-                        // Allow: Ctrl+A
-                                (e.keyCode == 65 && e.ctrlKey === true) ||
-                                // Allow: home, end, left, right
-                                        (e.keyCode >= 35 && e.keyCode <= 39)) {
-                            // let it happen, don't do anything
-                            return;
-                        }
-                        // Ensure that it is a number and stop the keypress
-                        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
-                            e.preventDefault();
-                        }
-                    });
-
-        </script>
-
-        <script src="assets/js/jquery.min.js"></script>
         <script src="assets/js/app.js"></script>
     </body>
 </html>

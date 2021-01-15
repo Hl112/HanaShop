@@ -17,7 +17,6 @@
         <link href="assets/css/css.css" rel="stylesheet" type="text/css">
         <link href="assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="assets/css/simple-line-icons.min.css" rel="stylesheet" type="text/css">
-        <link href="assets/css/animate.min.css" rel="stylesheet" type="text/css">
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <!-- End CSS-->
         <!-- Theme CSS-->
@@ -28,6 +27,10 @@
         <!-- Google Login -->
         <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
         <script src="assets/js/app.js"></script>
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/js/jquery.simplePagination.js"></script>
+
     </head>
     <body>
 
@@ -41,7 +44,7 @@
                     <!-- BEGIN: BRaND -->
                     <div class="c-navbar-wrapper clearfix">
                         <div class="c-brand c-pull-left">
-                            <a class="c-logo" href="/index.html">
+                            <a class="c-logo" href="index.jsp">
                                 <img height="21" class="c-desktop-logo" alt="" src="assets/img/logo-icon.png">
                                 <img height="21" class="c-desktop-logo-inverse" alt="" src="assets/img/logo-icon.png">
                                 <img height="21" class="c-mobile-logo" alt="" src="assets/img/logo-icon.png">
@@ -62,26 +65,26 @@
                         <nav
                             class="c-mega-menu c-pull-right c-mega-menu-dark c-mega-menu-dark-mobile c-fonts-uppercase c-fonts-bold">
                             <UL class="nav navbar-nav c-theme-nav">
-                                <li class="c-menu-type-classic">
-                                    <a class="c-link dropdown-toggle" href="/ngocrong.php">Menu 1</a>
-                                </li>
-                                <li class="c-menu-type-classic">
-                                    <a class="c-link dropdown-toggle" href="https://www.youtube.com/watch?v=egVBCDIiUPE">Menu 2</a>
-                                </li>
-                                <li class="c-menu-type-classic">
-                                    <a class="c-link dropdown-toggle" href="/napthe.php">Menu 3</a>
-                                </li>
-                                <li class="c-menu-type-classic">
-                                    <a class="c-link dropdown-toggle" href="#" onclick="tomalert()">Menu 4</a>
-                                </li>
-                                <li class="c-menu-type-classic">
-                                    <a class="c-link dropdown-toggle" href="/intro.php">Menu 5</a>
-                                </li>
+                                <!--  <li class="c-menu-type-classic">
+                                      <a class="c-link dropdown-toggle" href="/ngocrong.php">Menu 1</a>
+                                  </li>
+                                  <li class="c-menu-type-classic">
+                                      <a class="c-link dropdown-toggle" href="https://www.youtube.com/watch?v=egVBCDIiUPE">Menu 2</a>
+                                  </li>
+                                  <li class="c-menu-type-classic">
+                                      <a class="c-link dropdown-toggle" href="/napthe.php">Menu 3</a>
+                                  </li>
+                                  <li class="c-menu-type-classic">
+                                      <a class="c-link dropdown-toggle" href="#" onclick="tomalert()">Menu 4</a>
+                                  </li>--> 
+                                  <li class="c-menu-type-classic">
+                                      <a class="c-link dropdown-toggle" href="shopping.jsp">Shopping</a>
+                                  </li>   
                                 <c:if test="${not empty sessionScope.USER}">
                                     <c:if test="${sessionScope.USER.isAdmin}">
-                                <li class="c-menu-type-classic">
-                                    <a style="color: red;" class="c-link dropdown-toggle" href="/admin">Admin panel</a>
-                                </li>
+                                        <li class="c-menu-type-classic">
+                                            <a style="color: red;" class="c-link dropdown-toggle" href="admin.jsp">Admin panel</a>
+                                        </li>
                                     </c:if>
                                 </c:if>
                                 <c:if test="${empty sessionScope.USER}">
@@ -92,7 +95,7 @@
                                 </c:if>
                                 <c:if test="${not empty sessionScope.USER}">
                                     <li>
-                                        <a href="/user.php"
+                                        <a href="user.jsp"
                                            class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-dark c-btn-circle c-btn-uppercase c-btn-sbold">
                                             <i class="icon-user">${sessionScope.USER.fullname}</i>
                                         </a>

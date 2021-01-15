@@ -5,10 +5,12 @@
  */
 package lamhdt.servlet;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.naming.NamingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,8 +19,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import lamhdt.category.CategoryDAO;
-import lamhdt.category.CategoryDTO;
 import lamhdt.product.ProductDAO;
 import lamhdt.product.ProductDTO;
 
@@ -26,11 +26,11 @@ import lamhdt.product.ProductDTO;
  *
  * @author HL
  */
-@WebServlet(name = "SearchProductServlet", urlPatterns = {"/SearchProductServlet"})
-public class SearchProductServlet extends HttpServlet {
+@WebServlet(name = "DeleteProductServlet", urlPatterns = {"/DeleteProductServlet"})
+public class DeleteProductServlet extends HttpServlet {
 
-    private final String SHOPPING_PAGE = "shopping.jsp";
-
+    private final String ADMIN_PAGE = "admin.jsp";
+    private final String SEARCH_AD_SERVLET = "GetProductServlet";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -43,32 +43,30 @@ public class SearchProductServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String searchValue = request.getParameter("searchValue");
-        String categoryId = request.getParameter("category");
-        String price = request.getParameter("price");
-        
-        int id = -1, priceMax = -1;
         try {
-            if(categoryId != null && !categoryId.equals("---Select Category---")){
-                id = Integer.parseInt(categoryId);
+            String productId = request.getParameter("id");
+            System.out.println(productId);
+            if(productId != null){
+                int id = Integer.parseInt(productId);
+                ProductDAO dao = new ProductDAO();
+                ProductDTO dto = dao.getProductById(id);
+                String path = getServletContext().getRealPath("/upload") + "\\" + dto.getProductImage();
+                File f = new File(path);
+                f.delete();
+                if(dao.removeProductById(id)){
+                    request.setAttribute("NOTI", "Delete Product Successfuly");
+                    HttpSession session = request.getSession();
+                    session.setAttribute("LOAD", 0);
+                } else{
+                    request.setAttribute("NOTI", "Delete Fail");
+                }
             }
-            if(price != null && !price.equals("---Select Price---")){
-                priceMax = Integer.parseInt(price);
-            }
-            CategoryDAO cateDAO = new CategoryDAO();
-            ProductDAO dao = new ProductDAO();
-            List<ProductDTO> list = dao.searchProduct(searchValue, id, 0, priceMax);
-            List<CategoryDTO> listCategory = cateDAO.getAllCategory();
-            HttpSession session = request.getSession();
-            session.setAttribute("CATEGORY", listCategory);
-            session.setAttribute("PRODUCT", list);
-            session.setAttribute("LOAD", 1);
-        } catch (NamingException ex) {
-            log("SearchProductServlet _ Naming : " + ex.getMessage());
         } catch (SQLException ex) {
-            log("SearchProductServlet _ SQL : " + ex.getMessage());
-        } finally {
-            RequestDispatcher rd = request.getRequestDispatcher(SHOPPING_PAGE);
+            log("DeleteProductServlet _ SQL :" + ex.getMessage());
+        } catch (NamingException ex) {
+            log("DeleteProductServlet _ Naming: "+ex.getMessage());
+        } finally{
+            RequestDispatcher rd = request.getRequestDispatcher(ADMIN_PAGE);
             rd.forward(request, response);
         }
     }

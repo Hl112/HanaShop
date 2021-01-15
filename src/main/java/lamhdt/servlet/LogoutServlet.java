@@ -39,6 +39,7 @@ public class LogoutServlet extends HttpServlet {
         try {
             HttpSession session = request.getSession();
             session.removeAttribute("USER");
+            session.setAttribute("LOAD", 0);
             Cookie[] cookie = request.getCookies();
             if (cookie != null) {
                 for (Cookie ck : cookie) {
@@ -50,7 +51,7 @@ public class LogoutServlet extends HttpServlet {
                 }
             }
         } finally {
-            response.sendRedirect(LOGIN_PAGE);
+            response.sendRedirect(HOME_PAGE);
         }
     }
 

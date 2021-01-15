@@ -24,7 +24,7 @@ body {
   padding: 0;
   width: 100%;
   height: 100%;
-  background-image: url(../img/bg.png);
+  background-image: url(../img/bg.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -233,3 +233,11 @@ h1 {
   width: 100%;
   padding: 0;
 }
+
+body a:hover { text-decoration: underline; color:red; background-position: bottom; cursor : url("./chuothover.cur"), progress; }
+textarea { cursor: url("./chuothover.cur"), progress; } 
+select { border-width: 2px 2px 2px 2px; color: #000000; padding: 1px 1px 1px 1px; cursor: url("./chuothover.cur"), progress; } 
+option { cursor: url("./chuothover.cur"), progress; }
+option:focus,option:hover { cursor: url("../chuothover.cur"), progress; }
+input[type="submit"]:hover {cursor: url("./chuothover.cur"), progress; }
+html { cursor: url("./chuot.cur"), progress;}

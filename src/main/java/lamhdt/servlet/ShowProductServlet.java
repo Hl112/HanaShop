@@ -8,8 +8,6 @@ package lamhdt.servlet;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.naming.NamingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -52,6 +50,7 @@ public class ShowProductServlet extends HttpServlet {
             HttpSession session = request.getSession();
             session.setAttribute("CATEGORY", listCategory);
             session.setAttribute("PRODUCT", list);
+            session.setAttribute("LOAD", 1);
         } catch (NamingException ex) {
             log("ShowProductServlet _ Naming : " + ex.getMessage());
         } catch (SQLException ex) {

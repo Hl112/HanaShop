@@ -27,6 +27,7 @@ public class LoginServlet extends HttpServlet {
 
     private final String LOGIN_PAGE = "login.html";
     private final String HOME_PAGE = "index.jsp";
+    private final String INVALID_PAGE = "invalid.html";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,7 +44,7 @@ public class LoginServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String save = request.getParameter("remember");
-        String url = LOGIN_PAGE;
+        String url = INVALID_PAGE;
         try {
            AccountDAO dao = new AccountDAO();
            boolean result = dao.checkLogin(username, password);
@@ -51,6 +52,7 @@ public class LoginServlet extends HttpServlet {
                HttpSession session = request.getSession();
                AccountDTO user = dao.getInfo();
                session.setAttribute("USER", user);
+               session.setAttribute("LOAD", 0);
                if(save != null){
                    Cookie acc = new Cookie("USER", username+"-"+password);
                    acc.setMaxAge(60*3);

@@ -14,11 +14,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="google-signin-client_id"
               content="523448862507-7ascupmq7mgf5h8h0d2f6b871fug2rqs.apps.googleusercontent.com">
-        <jsp:include page="header.jsp" flush="true"/>
+       
     </head>
     <body>
-        
-        <jsp:include page="shopping.jsp" flush="true"/>
+        <c:redirect url="shopping.jsp"/>
+        <%--<jsp:include page="shopping.jsp" flush="true" />--%>
+        <%--<jsp:directive.include file="shopping.jsp" />--%>
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/js/bootstrap.min.js"></script>
         <script src="assets/js/bootstrap.js"></script>

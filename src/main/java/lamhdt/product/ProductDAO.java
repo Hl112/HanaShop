@@ -77,7 +77,7 @@ public class ProductDAO implements Serializable {
         if (rs.next()) {
             return rs.getInt("maxPrice");
         }
-        return 999999;
+        return 9999999;
     }
     
     public int getMinPrice(Connection conn) throws SQLException {
@@ -186,6 +186,26 @@ public class ProductDAO implements Serializable {
             preStm.setBoolean(7, true);
             check = preStm.executeUpdate() > 0;
         } finally {
+            closeConnection();
+        }
+        return check;
+    }
+    
+    public boolean updateProduct(ProductDTO dto) throws SQLException, NamingException{
+        boolean check = false;
+        try {
+            conn = DBHelper.makeConnection();
+            String sql = "UPDATE Product SET productName = ?, productImage = ?, productDescription = ?, productPrice = ?,quantity = ?, categoryId = ? WHERE productID = ?";
+            preStm = conn.prepareStatement(sql);
+            preStm.setNString(1, dto.getProductName());
+            preStm.setString(2, dto.getProductImage());
+            preStm.setNString(3, dto.getProductDescription());
+            preStm.setInt(4, dto.getProductPrice());
+            preStm.setInt(5, dto.getQuantity());
+            preStm.setInt(6, dto.getCategoryId());
+            preStm.setInt(7, dto.getProductId());
+            check = preStm.executeUpdate() > 0;
+        } finally{
             closeConnection();
         }
         return check;

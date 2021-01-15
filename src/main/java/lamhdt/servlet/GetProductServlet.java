@@ -26,11 +26,10 @@ import lamhdt.product.ProductDTO;
  *
  * @author HL
  */
-@WebServlet(name = "SearchProductServlet", urlPatterns = {"/SearchProductServlet"})
-public class SearchProductServlet extends HttpServlet {
+@WebServlet(name = "GetProductServlet", urlPatterns = {"/GetProductServlet"})
+public class GetProductServlet extends HttpServlet {
 
-    private final String SHOPPING_PAGE = "shopping.jsp";
-
+    private final String ADMIN_PAGE = "admin.jsp";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -43,7 +42,7 @@ public class SearchProductServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String searchValue = request.getParameter("searchValue");
+      String searchValue = request.getParameter("searchValue");
         String categoryId = request.getParameter("category");
         String price = request.getParameter("price");
         
@@ -68,7 +67,7 @@ public class SearchProductServlet extends HttpServlet {
         } catch (SQLException ex) {
             log("SearchProductServlet _ SQL : " + ex.getMessage());
         } finally {
-            RequestDispatcher rd = request.getRequestDispatcher(SHOPPING_PAGE);
+            RequestDispatcher rd = request.getRequestDispatcher(ADMIN_PAGE);
             rd.forward(request, response);
         }
     }

@@ -6,9 +6,9 @@
 package lamhdt.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.naming.NamingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,8 +17,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import lamhdt.category.CategoryDAO;
-import lamhdt.category.CategoryDTO;
 import lamhdt.product.ProductDAO;
 import lamhdt.product.ProductDTO;
 
@@ -26,10 +24,10 @@ import lamhdt.product.ProductDTO;
  *
  * @author HL
  */
-@WebServlet(name = "SearchProductServlet", urlPatterns = {"/SearchProductServlet"})
-public class SearchProductServlet extends HttpServlet {
+@WebServlet(name = "viewDetailServlet", urlPatterns = {"/viewDetailServlet"})
+public class viewDetailServlet extends HttpServlet {
 
-    private final String SHOPPING_PAGE = "shopping.jsp";
+    private final String VIEWDETAIL_PAGE = "viewDetail.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,32 +41,20 @@ public class SearchProductServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String searchValue = request.getParameter("searchValue");
-        String categoryId = request.getParameter("category");
-        String price = request.getParameter("price");
-        
-        int id = -1, priceMax = -1;
         try {
-            if(categoryId != null && !categoryId.equals("---Select Category---")){
-                id = Integer.parseInt(categoryId);
+            String id = request.getParameter("id");
+            if (id != null) {
+                int id_num = Integer.parseInt(id);
+                ProductDAO dao = new ProductDAO();
+                ProductDTO dto = dao.getProductById(id_num);
+                request.setAttribute("PRODUCT", dto);
             }
-            if(price != null && !price.equals("---Select Price---")){
-                priceMax = Integer.parseInt(price);
-            }
-            CategoryDAO cateDAO = new CategoryDAO();
-            ProductDAO dao = new ProductDAO();
-            List<ProductDTO> list = dao.searchProduct(searchValue, id, 0, priceMax);
-            List<CategoryDTO> listCategory = cateDAO.getAllCategory();
-            HttpSession session = request.getSession();
-            session.setAttribute("CATEGORY", listCategory);
-            session.setAttribute("PRODUCT", list);
-            session.setAttribute("LOAD", 1);
         } catch (NamingException ex) {
-            log("SearchProductServlet _ Naming : " + ex.getMessage());
+            log("viewDetailServlet _ Naming : " + ex.getMessage());
         } catch (SQLException ex) {
-            log("SearchProductServlet _ SQL : " + ex.getMessage());
+            log("viewDetailServlet _ SQL : " + ex.getMessage());
         } finally {
-            RequestDispatcher rd = request.getRequestDispatcher(SHOPPING_PAGE);
+            RequestDispatcher rd = request.getRequestDispatcher(VIEWDETAIL_PAGE);
             rd.forward(request, response);
         }
     }

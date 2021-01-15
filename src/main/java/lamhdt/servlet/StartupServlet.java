@@ -56,8 +56,8 @@ public class StartupServlet extends HttpServlet {
                         }
                     }
                 }
+                session.setAttribute("LOAD", 0);
             }
-
         } finally {
             RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);
