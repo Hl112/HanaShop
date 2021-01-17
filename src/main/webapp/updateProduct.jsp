@@ -12,7 +12,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Update Product</title>
         <c:import url="header.jsp"/>
-        
+
         <c:if test="${empty sessionScope.CATEGORY || empty param.id}">
             <jsp:forward page="DispatcherServlet?btAction=Search Product&searchValue="/>
         </c:if>
@@ -92,20 +92,26 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-3 control-label">Image File:</label>
+                            <label class="col-md-3 control-label">Product Status:</label>
                             <div class="col-md-6">
-                                <input type="hidden" name="id" value="${param.id}"/>
+                                <input class="form-control c-square c-theme" name="status" type="checkbox" value="1" <c:if test="${product.status}">checked</c:if>>
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Image File:</label>
+                                <div class="col-md-6">
+                                    <input type="hidden" name="id" value="${param.id}"/>
                                 <input type="hidden" name="imgOld" value="${product.productImage}" />
                                 <input class="form-control c-square c-theme" name="image" type="file" id="productImage" >
-                                <img id="preview" src="#" alt="Your Image">
+                                <br>
+                                <img id="preview" src="upload/${product.productImage}" alt="Old Image" class="c-square c-theme" style="width: 400px;">
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <div class="col-md-offset-3 col-md-6">
-                                <label></label>
-                            </div>
-                        </div> 
+
                         <div class="form-group c-margin-t-40">
                             <div class="col-md-offset-3 col-md-6">
                                 <button type="submit" name="btAction" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold btn-block">Update Product</button>

@@ -12,8 +12,6 @@ import java.net.URLEncoder;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.naming.NamingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -22,6 +20,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import lamhdt.account.AccountDTO;
+import lamhdt.log.LogDAO;
+import lamhdt.log.LogDTO;
 import lamhdt.product.ProductDAO;
 import lamhdt.product.ProductDTO;
 import org.apache.commons.fileupload.FileItem;
@@ -72,11 +73,11 @@ public class UpdateProductServlet extends HttpServlet {
                     } else {
                         try {
                             filename = castItem.getName();
-                            if(!filename.isBlank()){
-                            String path = getServletContext().getRealPath("/upload") + "\\" + filename;
-                            File f = new File(path);
-                            f.delete();
-                            castItem.write(f);
+                            if (!filename.isBlank()) {
+                                String path = getServletContext().getRealPath("/upload") + "\\" + filename;
+                                File f = new File(path);
+                                f.delete();
+                                castItem.write(f);
                             }
                         } catch (Exception ex) {
                             log("UploadProductServlet _ WriteFile : " + ex.getMessage());
@@ -87,7 +88,7 @@ public class UpdateProductServlet extends HttpServlet {
                 String id = params.get("id");
                 if (id != null) {
                     int productId = Integer.parseInt(id);
-                    if(filename.isBlank()){
+                    if (filename.isBlank()) {
                         filename = params.get("imgOld");
                     }
                     String category = params.get("category");
@@ -97,27 +98,40 @@ public class UpdateProductServlet extends HttpServlet {
                     String productPrice = params.get("price");
                     String quantity = params.get("quantity");
                     String description = params.get("description");
+                    String status = params.get("status");
+                    boolean status_bo = false;
+                    if(status != null){
+                        status_bo = true;
+                    }
                     description = URLEncoder.encode(description, "ISO-8859-1");
                     description = URLDecoder.decode(description, "UTF-8");
                     int categoryId = Integer.parseInt(category);
                     int price = Integer.parseInt(productPrice);
                     int quantity_num = Integer.parseInt(quantity);
-                    ProductDTO dto = new ProductDTO(productId, productName, filename, description, price, quantity_num, categoryId, true);
+                    ProductDTO dto = new ProductDTO(productId, productName, filename, description, price, quantity_num, categoryId, status_bo);
                     ProductDAO dao = new ProductDAO();
-                     if(dao.updateProduct(dto)){
-                         HttpSession session = request.getSession();
-                         session.setAttribute("LOAD", 0);
-                         request.setAttribute("NOTI", "Update product Successful!");
-                     }else{
-                         request.setAttribute("NOTI", "Update product Fail");
-                     }
+                    HttpSession session = request.getSession(false);
+                    if (session != null) {
+                        AccountDTO acc = (AccountDTO) session.getAttribute("USER");
+                        if (acc != null) {
+                            LogDAO logDAO = new LogDAO();
+                            if (dao.updateProduct(dto)) {
+                                LogDTO logDTO = new LogDTO(dto.getProductId(), acc.getUserID(), "Update");
+                                logDAO.createLog(logDTO);
+                                session.setAttribute("LOAD", 0);
+                                request.setAttribute("NOTI", "Update product Successful!");
+                            } else {
+                                request.setAttribute("NOTI", "Update product Fail");
+                            }
+                        }
+                    }
                 }
             }
 
         } catch (SQLException ex) {
             log("UpdateProductServlet _ SQL : " + ex.getMessage());
         } catch (NamingException ex) {
-           log("UpdateProductServlet _ Naming : " + ex.getMessage());
+            log("UpdateProductServlet _ Naming : " + ex.getMessage());
         } finally {
             RequestDispatcher rd = request.getRequestDispatcher(ADMIN_PAGE);
             rd.forward(request, response);

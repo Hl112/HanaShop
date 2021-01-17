@@ -68,4 +68,18 @@ public class AccountDAO implements Serializable {
         }
     }
     
+    public boolean updateInfo(String userId, String address, String phone) throws SQLException, NamingException{
+        try {
+            conn = DBHelper.makeConnection();
+            String sql = "UPDATE Users SET address = ?, phone = ? WHERE userId = ?";
+            preStm = conn.prepareStatement(sql);
+            preStm.setString(1, userId);
+            preStm.setNString(2, address);
+            preStm.setString(3, phone);
+            return preStm.executeUpdate() > 0;
+        } finally{
+            closeConnection();
+        }
+    }
+    
 }

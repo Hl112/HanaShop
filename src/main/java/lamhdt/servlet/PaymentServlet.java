@@ -6,9 +6,13 @@
 package lamhdt.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.naming.NamingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,8 +21,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import lamhdt.category.CategoryDAO;
-import lamhdt.category.CategoryDTO;
+import lamhdt.account.AccountDTO;
+import lamhdt.cart.CartObj;
+import lamhdt.payment.PaymentDAO;
+import lamhdt.payment.PaymentDTO;
 import lamhdt.product.ProductDAO;
 import lamhdt.product.ProductDTO;
 
@@ -26,10 +32,11 @@ import lamhdt.product.ProductDTO;
  *
  * @author HL
  */
-@WebServlet(name = "SearchProductServlet", urlPatterns = {"/SearchProductServlet"})
-public class SearchProductServlet extends HttpServlet {
+@WebServlet(name = "PaymentServlet", urlPatterns = {"/PaymentServlet"})
+public class PaymentServlet extends HttpServlet {
 
-    private final String SHOPPING_PAGE = "shopping.jsp";
+    private final String PAYMENT_PAGE = "paymentProcess.jsp";
+    private final String LOGIN_PAGE = "login.html";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,32 +50,38 @@ public class SearchProductServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String searchValue = request.getParameter("searchValue");
-        String categoryId = request.getParameter("category");
-        String price = request.getParameter("price");
-      
-        int id = -1, priceMax = -1;
+        String url = PAYMENT_PAGE;
         try {
-            if(categoryId != null && !categoryId.equals("---Select Category---")){
-                id = Integer.parseInt(categoryId);
-            }
-            if(price != null && !price.equals("---Select Price---")){
-                priceMax = Integer.parseInt(price);
-            }
-            CategoryDAO cateDAO = new CategoryDAO();
-            ProductDAO dao = new ProductDAO();
-            List<ProductDTO> list = dao.searchProduct(searchValue, id, 0, priceMax,true);
-            List<CategoryDTO> listCategory = cateDAO.getAllCategory();
             HttpSession session = request.getSession();
-            session.setAttribute("CATEGORY", listCategory);
-            session.setAttribute("PRODUCT", list);
-            session.setAttribute("LOAD", 1);
+            PaymentDAO paymentDAO = new PaymentDAO();
+            List<PaymentDTO> list = paymentDAO.getPaymnetMethod();
+            System.out.println(Arrays.toString(list.toArray()));
+            session.setAttribute("PAYMENT", list);
+                CartObj cart = (CartObj) session.getAttribute("CART");
+                List<ProductDTO> listProduct = null;
+                if (cart != null) {
+                    Map<Integer, Integer> items = cart.getItems();
+                    if (items != null) {
+                        if (listProduct == null) {
+                            listProduct = new ArrayList<>();
+                        }
+                        ProductDAO dao = new ProductDAO();
+                        for (Integer item : items.keySet()) {
+                            int quantity = items.get(item);
+                            ProductDTO dto = dao.getProductById((int) item);
+                            dto.setQuantity(quantity);
+                            listProduct.add(dto);
+                        }
+                    }
+                    session.setAttribute("LISTCART", listProduct);
+                }
+          
         } catch (NamingException ex) {
-            log("SearchProductServlet _ Naming : " + ex.getMessage());
+            log("PaymentServlet _ Naming : " + ex.getMessage());
         } catch (SQLException ex) {
-            log("SearchProductServlet _ SQL : " + ex.getMessage());
+            log("PaymentServlet _ SQL : " + ex.getMessage());
         } finally {
-            RequestDispatcher rd = request.getRequestDispatcher(SHOPPING_PAGE);
+            RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);
         }
     }

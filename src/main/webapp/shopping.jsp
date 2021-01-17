@@ -69,7 +69,7 @@
                     </div>
                     <input type="submit" class="btn c-theme-btn c-btn-square m-b-10" name="btAction" value="Search">
                     <c:if test="${not empty param.category || not empty param.price}">
-                        <c:if test="${param.category != -1 || param.price != -1}">
+                        <c:if test="${param.category != -1 || param.price != -1 || not empty param.searchValue}">
                             <a href="ShowProductServlet" class="btn btn-danger">X</a>
                         </c:if></c:if>
                     </form>
@@ -103,7 +103,7 @@
                                     <div class="c-overlay-content">
                                         <h3 class="c-content-isotope-overlay-title c-font-white c-font-uppercase">Category: ${pro.category.categoryName}</h3>
                                         <p class="c-content-isotope-overlay-price c-font-white c-font-bold">${pro.productName}</p>
-                                        <p class="c-content-isotope-overlay-desc c-font-white">${pro.productDescription}</p>
+                                        <p class="c-content-isotope-overlay-desc c-font-white"></p>
                                         <a href="viewDetailServlet?id=${pro.productId}"&" class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">View Detail</a>
                                     </div>
                                 </div>
@@ -119,7 +119,7 @@
                                     ${pro.productPrice}đ
                                 </p>
                                 <div class="pull-right" style="margin-top: -35px; margin-right: -8px;">
-                                    <form action="DispatcherServlet">
+                                    <form action="DispatcherServlet" onsubmit="return <c:if test="${sessionScope.USER.isAdmin}">false</c:if>">
                                         <input type="hidden" name="id" value="${pro.productId}" />
                                         <input type="submit" value="Add to cart" class="btn c-btn-green c-btn-square" name="btAction"/>
                                     </form>

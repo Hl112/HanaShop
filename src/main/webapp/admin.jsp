@@ -63,16 +63,16 @@
                         <div class="input-group m-t-10 c-square col-md-3 col-sm-4">
                             <span class="input-group-addon" id="basic-addon1" >Category</span>
                             <select class="form-control c-square c-theme" name="category">
-                                <option value="-1" <c:if test="${param.category == -1}">selected</c:if>>--- Select Category---</option>
+                                <option value="-1" <c:if test="${param.category == -1}">selected</c:if>>Select Category</option>
                                 <c:forEach items="${cate}" var="cat" varStatus="counter">
                                     <option value="${cat.categoryId}" <c:if test="${param.category eq cat.categoryId}">selected</c:if>>${cat.categoryName}</option>
                                 </c:forEach>
                             </select>
                         </div>
-                        <div class="input-group m-t-10 c-square col-md-3 col-sm-5">
+                        <div class="input-group m-t-10 c-square col-md-2 col-sm-5">
                             <span class="input-group-addon" id="basic-addon1">Price</span>
                             <select class="form-control c-square c-theme" name="price">
-                                <option value="-1" <c:if test="${param.price == -1}">selected</c:if>>---Select Price---</option>
+                                <option value="-1" <c:if test="${param.price == -1}">selected</c:if>>Select Price</option>
                                 <option value="50000" <c:if test="${param.price == 50000}">selected</c:if>>Price under 50k</option>
                                 <option value="100000" <c:if test="${param.price == 100000}">selected</c:if>>Price under 100k</option>
                                 <option value="300000" <c:if test="${param.price == 300000}">selected</c:if>>Price under 300k</option>
@@ -82,14 +82,21 @@
                                 <option value="5000000" <c:if test="${param.price == 5000000}">selected</c:if>>Price under 5m</option>
                                 </select>
                             </div>
-                            <div class="input-group m-b-10 c-square col-md-3 col-sm-12">
+                            <div class="input-group m-b-10 c-square col-md-2 col-sm-12">
                                 <span class="input-group-addon" id="basic-addon1">Search</span>
                                 <input type="text" class="form-control c-square c-theme" name="searchValue" placeholder="Search by name" value="${param.searchValue}">
                         </div>
-                        <input type="submit" class="btn c-theme-btn c-btn-square m-b-10" name="btAction" value="Search Product">
+                        <div class="input-group m-t-10 c-square col-md-2 col-sm-5">
+                            <span class="input-group-addon" id="basic-addon1">Active</span>
+                            <select class="form-control c-square c-theme" name="status">
+                                <option value="1" <c:if test="${sessionScope.status == true}">selected</c:if>>Active</option>
+                                <option value="0" <c:if test="${sessionScope.status == false}">selected</c:if>>Disable</option>
+                            </select>
+                            </div>
+                            <input type="submit" class="btn c-theme-btn c-btn-square m-b-10" name="btAction" value="Search Product">
                         <c:if test="${not empty param.category || not empty param.price}">
-                            <c:if test="${param.category != -1 || param.price != -1}">
-                                <a href="GetProductServlet?category=-1&price=-1&searchValue=" class="btn btn-danger">X</a>
+                            <c:if test="${param.category != -1 || param.price != -1 || param.status == 0}">
+                                <a href="GetProductServlet?category=-1&price=-1&searchValue=&status=1" class="btn btn-danger">X</a>
                             </c:if></c:if>
                         </form>
                     </div>

@@ -28,10 +28,13 @@ public class DispatcherServlet extends HttpServlet {
     private final String VIEWCART_SERVLET = "ViewCartServlet";
     private final String REMOVEFROMCART_SERVLET = "RemoveFromCartServlet";
     private final String UPDATECART_SERVLET = "UpdateCartServlet";
-
+    // Admin
     private final String ADDPRODUCT_SERVLET = "AddProductServlet";
     private final String DELETEPRODUCT_SERVLET = "DeleteProductServlet";
     private final String UPDATEPRODUCT_SERVLET = "UpdateProductServlet";
+    // Check out
+    private final String PAYMENT_SERVLET = "PaymentServlet";
+    private final String CHECKOUT_SERVLET = "CheckOutServlet";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -70,15 +73,24 @@ public class DispatcherServlet extends HttpServlet {
                 if (button.equals("Search Product")) {
                     url = SEARCH_AD_SERVLET;
                 }
-                if(button.equals("Add Product")){
+                if (button.equals("Add Product")) {
                     url = ADDPRODUCT_SERVLET;
                 }
-                if(button.equals("Show"))
+                if (button.equals("Show")) {
                     url = SHOWPRODUCT_SERVLET;
-                if(button.equals("Delete Product"))
+                }
+                if (button.equals("Delete Product")) {
                     url = DELETEPRODUCT_SERVLET;
-                if(button.equals("Update Product"))
+                }
+                if (button.equals("Update Product")) {
                     url = UPDATEPRODUCT_SERVLET;
+                }
+                if (button.equals("Payment")) {
+                    url = PAYMENT_SERVLET;
+                }
+                if(button.equals("Check out")){
+                    url = CHECKOUT_SERVLET;
+                }
 
             }
 

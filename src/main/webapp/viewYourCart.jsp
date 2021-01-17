@@ -13,6 +13,18 @@
         <c:import url="header.jsp"></c:import>
         </head>
         <body>
+            <c:if test="${sessionScope.USER.isAdmin}">
+            <div class="c-content-box c-size-md c-bg-grey-1">
+                <div class="container">
+                    <div class="c-content-bar-1 c-opt-1">
+                        <h3 class="c-font-uppercase c-font-bold">Function of User Role</h3>
+                        <p class="c-font-uppercase">
+                            Please go to home page to use another function.  </p>
+                    </div>
+                </div> 
+            </div>
+        </c:if>
+        <c:if test="${!sessionScope.USER.isAdmin}">
         <c:set var="list" value="${sessionScope.LISTCART}"/>
         <div class="c-layout-page" style="margin-top: 20px;">
             <div class="container">
@@ -79,7 +91,7 @@
                                     <th><span class="total">${total}</span>đ</th>
                                     <th>
                                         <a href="#" value="Remove from cart" data-toggle="modal" data-target="#basicModal" class="btn btn-danger">Remove from cart</a>
-                                        <input type="submit" value="Payment" name="btAction" class="btn btn-success"/>
+                                        <a href="DispatcherServlet?btAction=Payment" value="Payment" class="btn btn-success">Payment</a>
 
                                         <!-- Modal Confirm -->
                                         <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
@@ -123,7 +135,7 @@
 
             </div>
         </div>
-
+        </c:if>
         <script src="assets/js/app.js"></script>
     </body>
 </html>

@@ -30,6 +30,7 @@ import lamhdt.product.ProductDTO;
 public class GetProductServlet extends HttpServlet {
 
     private final String ADMIN_PAGE = "admin.jsp";
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -42,23 +43,28 @@ public class GetProductServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-      String searchValue = request.getParameter("searchValue");
+        String searchValue = request.getParameter("searchValue");
         String categoryId = request.getParameter("category");
         String price = request.getParameter("price");
-        
+        String status = request.getParameter("status");
+        boolean isActive = false;
+        if ("1".equals(status)) {
+            isActive = true;
+        }
         int id = -1, priceMax = -1;
         try {
-            if(categoryId != null && !categoryId.equals("---Select Category---")){
+            if (categoryId != null && !categoryId.equals("---Select Category---")) {
                 id = Integer.parseInt(categoryId);
             }
-            if(price != null && !price.equals("---Select Price---")){
+            if (price != null && !price.equals("---Select Price---")) {
                 priceMax = Integer.parseInt(price);
             }
             CategoryDAO cateDAO = new CategoryDAO();
             ProductDAO dao = new ProductDAO();
-            List<ProductDTO> list = dao.searchProduct(searchValue, id, 0, priceMax);
+            List<ProductDTO> list = dao.searchProduct(searchValue, id, 0, priceMax, isActive);
             List<CategoryDTO> listCategory = cateDAO.getAllCategory();
             HttpSession session = request.getSession();
+            session.setAttribute("status", isActive);
             session.setAttribute("CATEGORY", listCategory);
             session.setAttribute("PRODUCT", list);
             session.setAttribute("LOAD", 1);

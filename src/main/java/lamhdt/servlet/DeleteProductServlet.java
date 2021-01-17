@@ -19,6 +19,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import lamhdt.account.AccountDTO;
+import lamhdt.log.LogDAO;
+import lamhdt.log.LogDTO;
 import lamhdt.product.ProductDAO;
 import lamhdt.product.ProductDTO;
 
@@ -31,6 +34,7 @@ public class DeleteProductServlet extends HttpServlet {
 
     private final String ADMIN_PAGE = "admin.jsp";
     private final String SEARCH_AD_SERVLET = "GetProductServlet";
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -46,26 +50,34 @@ public class DeleteProductServlet extends HttpServlet {
         try {
             String productId = request.getParameter("id");
             System.out.println(productId);
-            if(productId != null){
-                int id = Integer.parseInt(productId);
-                ProductDAO dao = new ProductDAO();
-                ProductDTO dto = dao.getProductById(id);
-                String path = getServletContext().getRealPath("/upload") + "\\" + dto.getProductImage();
-                File f = new File(path);
-                f.delete();
-                if(dao.removeProductById(id)){
-                    request.setAttribute("NOTI", "Delete Product Successfuly");
-                    HttpSession session = request.getSession();
-                    session.setAttribute("LOAD", 0);
-                } else{
-                    request.setAttribute("NOTI", "Delete Fail");
+            if (productId != null) {
+                HttpSession session = request.getSession(false);
+                if (session != null) {
+                    AccountDTO acc = (AccountDTO) session.getAttribute("USER");
+                    if (acc != null) {
+                        int id = Integer.parseInt(productId);
+                        ProductDAO dao = new ProductDAO();
+                        ProductDTO dto = dao.getProductById(id);
+                        String path = getServletContext().getRealPath("/upload") + "\\" + dto.getProductImage();
+                        File f = new File(path);
+                        f.delete();
+                        LogDAO logDAO = new LogDAO();
+                        if (dao.removeProductById(id)) {
+                            LogDTO log = new LogDTO(dto.getProductId(), acc.getUserID(), "Delete");
+                            logDAO.createLog(log);
+                            request.setAttribute("NOTI", "Delete Product Successfuly");
+                            session.setAttribute("LOAD", 0);
+                        } else {
+                            request.setAttribute("NOTI", "Delete Fail");
+                        }
+                    }
                 }
             }
         } catch (SQLException ex) {
             log("DeleteProductServlet _ SQL :" + ex.getMessage());
         } catch (NamingException ex) {
-            log("DeleteProductServlet _ Naming: "+ex.getMessage());
-        } finally{
+            log("DeleteProductServlet _ Naming: " + ex.getMessage());
+        } finally {
             RequestDispatcher rd = request.getRequestDispatcher(ADMIN_PAGE);
             rd.forward(request, response);
         }

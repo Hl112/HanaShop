@@ -70,10 +70,12 @@ public class AddProductServlet extends HttpServlet {
                     } else {
                         try {
                             filename = castItem.getName();
-                            String path = getServletContext().getRealPath("/upload") + "\\" + castItem.getName();
-                            System.out.println(path);
-                            File f = new File(path);
-                            castItem.write(f);
+                            if (!filename.isBlank()) {
+                                String path = getServletContext().getRealPath("/upload") + "\\" + castItem.getName();
+                                System.out.println(path);
+                                File f = new File(path);
+                                castItem.write(f);
+                            }
                         } catch (Exception e) {
                             request.setAttribute("NOTI", "Upload File Error");
                         }
@@ -91,6 +93,7 @@ public class AddProductServlet extends HttpServlet {
                 int categoryId = Integer.parseInt(category);
                 int price = Integer.parseInt(productPrice);
                 int quantity_num = Integer.parseInt(quantity);
+                if(filename.isBlank()) filename = "noimg.png";
                 ProductDTO dto = new ProductDTO(productName, filename, description, price, quantity_num, categoryId, true);
                 ProductDAO dao = new ProductDAO();
                 if (dao.addProduct(dto)) {

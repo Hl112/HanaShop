@@ -6,9 +6,11 @@
 package lamhdt.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.sql.Date;
 import java.sql.SQLException;
-import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.naming.NamingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,19 +19,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import lamhdt.category.CategoryDAO;
-import lamhdt.category.CategoryDTO;
-import lamhdt.product.ProductDAO;
-import lamhdt.product.ProductDTO;
+import lamhdt.account.AccountDTO;
+import lamhdt.cart.CartObj;
+import lamhdt.order.OrderDAO;
+import lamhdt.order.OrderDTO;
 
 /**
  *
  * @author HL
  */
-@WebServlet(name = "SearchProductServlet", urlPatterns = {"/SearchProductServlet"})
-public class SearchProductServlet extends HttpServlet {
+@WebServlet(name = "CheckOutServlet", urlPatterns = {"/CheckOutServlet"})
+public class CheckOutServlet extends HttpServlet {
 
-    private final String SHOPPING_PAGE = "shopping.jsp";
+    private final String LOGIN_PAGE = "login.html";
+    private final String VIEWCART_SERVLET = "ViewCartServlet";
+    private final String VIEWORDER_PAGE = "viewOrder.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,32 +47,44 @@ public class SearchProductServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String searchValue = request.getParameter("searchValue");
-        String categoryId = request.getParameter("category");
-        String price = request.getParameter("price");
-      
-        int id = -1, priceMax = -1;
+        String url = VIEWCART_SERVLET;
         try {
-            if(categoryId != null && !categoryId.equals("---Select Category---")){
-                id = Integer.parseInt(categoryId);
+            String name = request.getParameter("name");
+            String address = request.getParameter("address");
+            String phone = request.getParameter("phone");
+            String payment = request.getParameter("payment");
+            if (payment != null) {
+                int payment_id = Integer.parseInt(payment);
+                if (payment_id == 2) {
+                    HttpSession session = request.getSession(false);
+                    if (session != null) {
+                        CartObj cart = (CartObj) session.getAttribute("CART");
+                        AccountDTO acc = (AccountDTO) session.getAttribute("USER");
+                        if (cart != null && acc != null) {
+                            Map<Integer, Integer> items = cart.getItems();
+                            if (items != null) {
+                                OrderDAO dao = new OrderDAO();
+                                OrderDTO dto = new OrderDTO(acc.getUserID(), 0, payment_id, address, phone);
+                                if (dao.createOrder(dto, items)) {
+                                    url = VIEWORDER_PAGE;
+                                   request.setAttribute("ORDER", dto);
+                                   request.setAttribute("NOTI", "Order successfuly");
+                                }else{
+                                    request.setAttribute("NOTI", "ORDER Fail");
+                                }
+                            }
+                        }
+                    }
+                }
             }
-            if(price != null && !price.equals("---Select Price---")){
-                priceMax = Integer.parseInt(price);
-            }
-            CategoryDAO cateDAO = new CategoryDAO();
-            ProductDAO dao = new ProductDAO();
-            List<ProductDTO> list = dao.searchProduct(searchValue, id, 0, priceMax,true);
-            List<CategoryDTO> listCategory = cateDAO.getAllCategory();
-            HttpSession session = request.getSession();
-            session.setAttribute("CATEGORY", listCategory);
-            session.setAttribute("PRODUCT", list);
-            session.setAttribute("LOAD", 1);
         } catch (NamingException ex) {
-            log("SearchProductServlet _ Naming : " + ex.getMessage());
+          log("CheckOutServlet _ Naming: " + ex.getMessage());
         } catch (SQLException ex) {
-            log("SearchProductServlet _ SQL : " + ex.getMessage());
+          log("CheckOutServlet _ SQL: " + ex.getMessage());
+        } catch (Exception ex) {
+           request.setAttribute("NOTI", ex.getMessage());
         } finally {
-            RequestDispatcher rd = request.getRequestDispatcher(SHOPPING_PAGE);
+            RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);
         }
     }

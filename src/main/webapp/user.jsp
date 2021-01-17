@@ -43,7 +43,7 @@
             <div class="c-layout-page" style="margin-top: 20px;">
                 <div class="container">
 
-                    <?php include 'menu.php'; ?>  
+                    <c:import url="menu.jsp"/>
 
                     <div class="c-layout-sidebar-content ">
                         <!-- BEGIN: PAGE CONTENT -->

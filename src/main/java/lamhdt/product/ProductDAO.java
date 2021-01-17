@@ -14,7 +14,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.naming.NamingException;
-import lamhdt.account.AccountDTO;
 import lamhdt.category.CategoryDAO;
 import lamhdt.category.CategoryDTO;
 import lamhdt.utilities.DBHelper;
@@ -24,11 +23,11 @@ import lamhdt.utilities.DBHelper;
  * @author HL
  */
 public class ProductDAO implements Serializable {
-    
+
     private Connection conn;
     private PreparedStatement preStm;
     private ResultSet rs;
-    
+
     private void closeConnection() throws SQLException {
         if (rs != null) {
             rs.close();
@@ -40,7 +39,7 @@ public class ProductDAO implements Serializable {
             conn.close();
         }
     }
-    
+
     public List<ProductDTO> getAllProduct() throws NamingException, SQLException {
         List<ProductDTO> result = null;
         try {
@@ -69,7 +68,7 @@ public class ProductDAO implements Serializable {
         }
         return result;
     }
-    
+
     public int getMaxPrice(Connection conn) throws SQLException {
         String sql = "SELECT MAX(productPrice) AS maxPrice FROM dbo.Product";
         preStm = conn.prepareStatement(sql);
@@ -79,7 +78,7 @@ public class ProductDAO implements Serializable {
         }
         return 9999999;
     }
-    
+
     public int getMinPrice(Connection conn) throws SQLException {
         String sql = "SELECT MIN(productPrice) AS minPrice FROM dbo.Product";
         preStm = conn.prepareStatement(sql);
@@ -89,11 +88,10 @@ public class ProductDAO implements Serializable {
         }
         return 0;
     }
-    
-    public List<ProductDTO> searchProduct(String searchName, int searchCategoryId, int min, int max) throws NamingException, SQLException {
+
+    public List<ProductDTO> searchProduct(String searchName, int searchCategoryId, int min, int max,boolean statuss) throws NamingException, SQLException {
         List<ProductDTO> result = null;
         String searchCategory = (searchCategoryId != -1) ? " AND categoryId = " + searchCategoryId : "";
-        
         try {
             conn = DBHelper.makeConnection();
             if (min == -1) {
@@ -104,8 +102,9 @@ public class ProductDAO implements Serializable {
             }
             String sql = "SELECT productID,productName,productImage,productDescription,productPrice,quantity,createDate,categoryId,status \n"
                     + "FROM Product\n"
-                    + "WHERE productName LIKE '%" + searchName + "%' AND productPrice BETWEEN " + min + " AND " + max + "" + searchCategory + " AND status = 1 AND quantity >0 ORDER BY createDate DESC";
+                    + "WHERE productName LIKE '%" + searchName + "%' AND productPrice BETWEEN " + min + " AND " + max + "" + searchCategory + " AND status = ? AND quantity >0 ORDER BY createDate DESC";
             preStm = conn.prepareStatement(sql);
+            preStm.setBoolean(1, statuss);
             rs = preStm.executeQuery();
             result = new ArrayList<>();
             CategoryDAO dao = new CategoryDAO();
@@ -128,7 +127,7 @@ public class ProductDAO implements Serializable {
         }
         return result;
     }
-    
+
     public ProductDTO getProductById(int id) throws NamingException, SQLException {
         ProductDTO dto = null;
         try {
@@ -155,7 +154,32 @@ public class ProductDAO implements Serializable {
         }
         return dto;
     }
-    
+
+    public ProductDTO getQuantityById(Connection conn, int id) throws SQLException {
+        ProductDTO dto  = null;
+        try {
+            String sql = "SELECT productName,quantity FROM Product WHERE productId = ?";
+            preStm = conn.prepareStatement(sql);
+            preStm.setInt(1, id);
+            rs = preStm.executeQuery();
+            if (rs.next()) {
+                String name = rs.getNString("productName");
+                int quantity = rs.getInt("quantity");
+                 dto = new ProductDTO();
+                dto.setProductName(name);
+                dto.setQuantity(quantity);
+            }
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (preStm != null) {
+                rs.close();
+            }
+        }
+        return dto;
+    }
+
     public boolean removeProductById(int id) throws SQLException, NamingException {
         boolean check = false;
         try {
@@ -169,7 +193,7 @@ public class ProductDAO implements Serializable {
         }
         return check;
     }
-    
+
     public boolean addProduct(ProductDTO dto) throws SQLException, NamingException {
         boolean check = false;
         try {
@@ -190,12 +214,12 @@ public class ProductDAO implements Serializable {
         }
         return check;
     }
-    
-    public boolean updateProduct(ProductDTO dto) throws SQLException, NamingException{
+
+    public boolean updateProduct(ProductDTO dto) throws SQLException, NamingException {
         boolean check = false;
         try {
             conn = DBHelper.makeConnection();
-            String sql = "UPDATE Product SET productName = ?, productImage = ?, productDescription = ?, productPrice = ?,quantity = ?, categoryId = ? WHERE productID = ?";
+            String sql = "UPDATE Product SET productName = ?, productImage = ?, productDescription = ?, productPrice = ?,quantity = ?, categoryId = ?, status = ? WHERE productID = ?";
             preStm = conn.prepareStatement(sql);
             preStm.setNString(1, dto.getProductName());
             preStm.setString(2, dto.getProductImage());
@@ -203,9 +227,10 @@ public class ProductDAO implements Serializable {
             preStm.setInt(4, dto.getProductPrice());
             preStm.setInt(5, dto.getQuantity());
             preStm.setInt(6, dto.getCategoryId());
-            preStm.setInt(7, dto.getProductId());
+            preStm.setBoolean(7, dto.isStatus());
+            preStm.setInt(8, dto.getProductId());
             check = preStm.executeUpdate() > 0;
-        } finally{
+        } finally {
             closeConnection();
         }
         return check;

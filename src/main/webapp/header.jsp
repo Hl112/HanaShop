@@ -63,7 +63,7 @@
                         <!-- Dropdown menu toggle on mobile: c-toggler class can be applied to the link arrow or link itself depending on toggle mode -->
 
                         <nav
-                            class="c-mega-menu c-pull-right c-mega-menu-dark c-mega-menu-dark-mobile c-fonts-uppercase c-fonts-bold">
+                            class="c-mega-menu c-pull-right c-mega-menu-dark c-fonts-uppercase c-fonts-bold">
                             <UL class="nav navbar-nav c-theme-nav">
                                 <!--  <li class="c-menu-type-classic">
                                       <a class="c-link dropdown-toggle" href="/ngocrong.php">Menu 1</a>
@@ -83,7 +83,7 @@
                                 <c:if test="${not empty sessionScope.USER}">
                                     <c:if test="${sessionScope.USER.isAdmin}">
                                         <li class="c-menu-type-classic">
-                                            <a style="color: red;" class="c-link dropdown-toggle" href="admin.jsp">Admin panel</a>
+                                            <a style="color: red;" class="c-link" href="admin.jsp">Admin panel</a>
                                         </li>
                                     </c:if>
                                 </c:if>
