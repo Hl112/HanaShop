@@ -76,7 +76,7 @@
                                         <td>
                                             <div class="quantity buttons_added">
                                                 <input type="button" value="-" class="minus btn btn-danger btn-number" onclick="update_sub_quantity(${counter.count})">
-                                                <input type="number" step="1" min="1" max="" name="quantity" value="${pro.quantity}" title="Qty" class="input-number qty" size="4" readonly>
+                                                <input type="number" step="1" min="1" max="" name="quantity" value="${pro.quantity}" title="Qty" class="input-number qty" size="4" onfocusout="update_quantity(${counter.count})">
                                                 <input type="button" value="+" class="plus btn btn-success btn-number" onclick="update_plus_quantity(${counter.count})">
                                             </div>
                                         </td>

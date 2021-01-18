@@ -11,7 +11,10 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import javax.naming.NamingException;
+import lamhdt.utilities.DBHelper;
 
 /**
  *
@@ -52,12 +55,37 @@ public class OrderDetailsDAO implements Serializable {
         return check;
     }
 
-    public List<OrderDetailsDTO> searchOrder(String name, Date startDate, Date endDate) {
+    public List<OrderDetailsDTO> searchOrder(String name, String startDate, String endDate) throws NamingException, SQLException {
         List<OrderDetailsDTO> result = null;
         try {
-
+            conn = DBHelper.makeConnection();
+            String sql = "SELECT orderID,orderDate, orderStatus,paymentId, productId, quantity "
+                    + "FROM [ORDER] AS A JOIN OrderDetails AS B ON A.orderID = B.orderID "
+                    + "WHERE  A.orderDate <= '12-12-2022' AND A.orderDate >= '1/1/2000'";
         } finally {
-
+            closeConnection();
+        }
+        return result;
+    }
+    
+    public List<OrderDetailsDTO> getOrderDetailsById(Connection conn,int id) throws SQLException{
+        List<OrderDetailsDTO> result = null;
+        OrderDetailsDTO dto = null;
+        try {
+            String sql = "SELECT productID, quantity FROM OrderDetails WHERE orderID = ?";
+            stm =  conn.prepareStatement(sql);
+            stm.setInt(1, id);
+            rs = stm.executeQuery();
+            result = new ArrayList<>();
+            while(rs.next()){
+               int productId = rs.getInt("productID");
+               int quantity = rs.getInt("quantity");
+               dto = new OrderDetailsDTO(id, productId, quantity);
+               result.add(dto);
+            }
+        } finally{
+            if(rs!=null) rs.close();
+            if(stm!=null) stm.close();
         }
         return result;
     }

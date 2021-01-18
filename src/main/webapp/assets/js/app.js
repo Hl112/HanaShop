@@ -114,9 +114,50 @@ function update_plus_quantity(row) {
     http.send(params);
 }
 
+function update_quantity(row) {
+    console.log(row);
+    var amount = document.getElementsByClassName('qty')[row - 1].value;
+    var id = document.getElementsByClassName('id')[row - 1].value;
+    if (amount < 1) {
+        alert("Input Error Quantity");
+        document.getElementsByClassName('qty')[row - 1].value = 1;
+        return;
+    }
+    var http = new XMLHttpRequest();
+    var url = 'UpdateCartServlet';
+    var params = 'btAction=Update Cart&id=' + id + '&amount=' + amount;
+    http.open('POST', url, true);
+    http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    http.onreadystatechange = function () {//Call a function when the state changes.
+        if (http.readyState === 4 && http.status === 200) {
+            update_total(row);
+            document.getElementById('noti').innerHTML = '<a class="btn btn-block c-btn btn-lg c-theme-btn c-font-uppercase c-font-bold c-btn-square m-t-20" href="#">Update Amount Cart Successfully</a>';
+        } else {
+            document.getElementById('noti').innerHTML = '<a class="btn btn-block c-btn btn-lg btn-danger c-theme-btn c-font-uppercase c-font-bold c-btn-square m-t-20" href="#">Update Amount Cart Error</a>';
+        }
+    };
+    http.send(params);
+}
+
+function add_to_cart(id) {
+    console.log(id);
+    var http = new XMLHttpRequest();
+    var url = "DispatcherServlet";
+    var params = 'btAction=Add to cart&id=' + id;
+    http.open('POST', url, true);
+    http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    http.onreadystatechange = function () {//Call a function when the state changes.
+        if (http.readyState === 4 && http.status === 200) {
+            document.getElementById('noti').innerHTML = '<a class="btn btn-block c-btn btn-lg c-theme-btn c-font-uppercase c-font-bold c-btn-square m-t-20" href="#">Add To Cart Successfully</a>';
+        } else {
+            document.getElementById('noti').innerHTML = '<a class="btn btn-block c-btn btn-lg btn-danger c-theme-btn c-font-uppercase c-font-bold c-btn-square m-t-20" href="#">Add To Cart Error</a>';
+        }
+    };
+    http.send(params);
+}
+
 function update_total(row) {
     var price = document.getElementsByClassName('price')[row - 1].innerHTML;
-
     var amount = document.getElementsByClassName('qty')[row - 1].value;
     document.getElementsByClassName('total_1')[row - 1].innerHTML = price * amount;
     var dom = document.getElementsByClassName('total_1');

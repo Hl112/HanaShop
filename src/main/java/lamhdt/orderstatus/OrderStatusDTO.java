@@ -12,16 +12,34 @@ import java.io.Serializable;
  * @author HL
  */
 public class OrderStatusDTO implements Serializable{
-    private String orderStatusCode;
+    private int orderStatusCode;
     private String orderStatusDescription;
 
     public OrderStatusDTO() {
     }
 
-    public OrderStatusDTO(String orderStatusCode, String orderStatusDescription) {
+    public OrderStatusDTO(int orderStatusCode, String orderStatusDescription) {
         this.orderStatusCode = orderStatusCode;
         this.orderStatusDescription = orderStatusDescription;
     }
+
+    public int getOrderStatusCode() {
+        return orderStatusCode;
+    }
+
+    public void setOrderStatusCode(int orderStatusCode) {
+        this.orderStatusCode = orderStatusCode;
+    }
+
+    public String getOrderStatusDescription() {
+        return orderStatusDescription;
+    }
+
+    public void setOrderStatusDescription(String orderStatusDescription) {
+        this.orderStatusDescription = orderStatusDescription;
+    }
+    
+    
     
     
 }

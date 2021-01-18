@@ -16,11 +16,14 @@
         <c:if test="${!empty requestScope.NOTI}">
             <c:set var="NOTI" value="${requestScope.NOTI}" scope="request"/>
         </c:if>
+        <c:if test="${sessionScope.status}">
+            <c:set var="statuss" value="1"/>
+        </c:if>
         <c:if test="${sessionScope.LOAD == 0 || empty sessionScope.LOAD}">
             <c:if test="${!empty requestScope.NOTI}">
                 <c:set var="NOTI" value="${requestScope.NOTI}" scope="request"/>
             </c:if>
-            <c:redirect url="DispatcherServlet?btAction=Search Product&searchValue="/>
+            <c:redirect url="DispatcherServlet?btAction=Search Product&searchValue=&status=${statuss}"/>
         </c:if>
     </head>
     <body>   
@@ -90,12 +93,12 @@
                             <span class="input-group-addon" id="basic-addon1">Active</span>
                             <select class="form-control c-square c-theme" name="status">
                                 <option value="1" <c:if test="${sessionScope.status == true}">selected</c:if>>Active</option>
-                                <option value="0" <c:if test="${sessionScope.status == false}">selected</c:if>>Disable</option>
+                                <option value="0" <c:if test="${sessionScope.status == false}">selected</c:if>>Inactive</option>
                             </select>
                             </div>
                             <input type="submit" class="btn c-theme-btn c-btn-square m-b-10" name="btAction" value="Search Product">
                         <c:if test="${not empty param.category || not empty param.price}">
-                            <c:if test="${param.category != -1 || param.price != -1 || param.status == 0}">
+                            <c:if test="${param.category != -1 || param.price != -1 || param.status == 0 || statuss != 1}">
                                 <a href="GetProductServlet?category=-1&price=-1&searchValue=&status=1" class="btn btn-danger">X</a>
                             </c:if></c:if>
                         </form>
@@ -118,6 +121,7 @@
                                 <th>Quantity</th>
                                 <th>Category</th>
                                 <th>Image</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -144,6 +148,10 @@
                             <td>${pro.category.categoryName}</td>
                             <td>
                                 <img src="upload/${pro.productImage}" width="120px" height="120px" alt="No Img"/>
+                            </td>
+                            <td>
+                                <c:if test="${pro.status}">Active</c:if>
+                                <c:if test="${!pro.status}">Inactive</c:if>
                             </td>
                             <td>
                                 <a href="updateProduct.jsp?id=${pro.productId}" class="btn btn-primary">Update</a>

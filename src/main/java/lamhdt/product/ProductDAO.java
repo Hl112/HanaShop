@@ -158,16 +158,18 @@ public class ProductDAO implements Serializable {
     public ProductDTO getQuantityById(Connection conn, int id) throws SQLException {
         ProductDTO dto  = null;
         try {
-            String sql = "SELECT productName,quantity FROM Product WHERE productId = ?";
+            String sql = "SELECT productName,quantity,status FROM Product WHERE productId = ?";
             preStm = conn.prepareStatement(sql);
             preStm.setInt(1, id);
             rs = preStm.executeQuery();
             if (rs.next()) {
                 String name = rs.getNString("productName");
                 int quantity = rs.getInt("quantity");
+                boolean status = rs.getBoolean("status");
                  dto = new ProductDTO();
                 dto.setProductName(name);
                 dto.setQuantity(quantity);
+                dto.setStatus(status);
             }
         } finally {
             if (rs != null) {
@@ -232,6 +234,20 @@ public class ProductDAO implements Serializable {
             check = preStm.executeUpdate() > 0;
         } finally {
             closeConnection();
+        }
+        return check;
+    }
+    
+    public boolean updateQuantity(Connection conn,int id, int quantity) throws SQLException{
+        boolean check = false;
+        try {
+            String sql = "UPDATE Product SET quantity = ? WHERE productId = ?";
+            preStm = conn.prepareStatement(sql);
+            preStm.setInt(1, quantity);
+            preStm.setInt(2, id);
+            check = preStm.executeUpdate()>0;
+        } finally{
+            if(preStm!=null)preStm.close();
         }
         return check;
     }

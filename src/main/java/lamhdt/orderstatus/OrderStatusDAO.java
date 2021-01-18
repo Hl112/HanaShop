@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -30,6 +32,26 @@ public class OrderStatusDAO implements Serializable {
         if (conn != null) {
             conn.close();
         }
+    }
+    
+    public List<OrderStatusDTO> getStatus(Connection conn) throws SQLException{
+        List<OrderStatusDTO> result = null;
+        OrderStatusDTO dto = null;
+        try {
+           String sql = "SELECT orderStatusCode, orderStatusDescription FROM OrderStatus";
+           preStm = conn.prepareStatement(sql);
+           rs = preStm.executeQuery();
+           result = new ArrayList<>();
+           while(rs.next()){
+               int orderStatusCode = rs.getInt("orderStatusCode");
+               String orderStatusDescription = rs.getString("orderStatusDescription");
+               dto = new OrderStatusDTO(orderStatusCode, orderStatusDescription);
+               result.add(dto);
+           }
+        } finally{
+            closeConnection();
+        }
+        return result;
     }
     
   

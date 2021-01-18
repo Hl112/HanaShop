@@ -26,7 +26,7 @@
         <div class="container">
             <div class="m-l-10 m-r-10">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-6" id="noti">
                         <c:if test="${not empty requestScope.NOTI}">
                             <a class="btn btn-block c-btn btn-lg c-theme-btn c-font-uppercase c-font-bold c-btn-square m-t-20" href="#">
                                 ${requestScope.NOTI}
@@ -119,10 +119,11 @@
                                     ${pro.productPrice}đ
                                 </p>
                                 <div class="pull-right" style="margin-top: -35px; margin-right: -8px;">
-                                    <form action="DispatcherServlet" onsubmit="return <c:if test="${sessionScope.USER.isAdmin}">false</c:if>">
+<!--                                    <form action="DispatcherServlet" onsubmit="return <c:if test="${sessionScope.USER.isAdmin}">false</c:if>">
                                         <input type="hidden" name="id" value="${pro.productId}" />
                                         <input type="submit" value="Add to cart" class="btn c-btn-green c-btn-square" name="btAction"/>
-                                    </form>
+                                    </form>-->
+                                    <a href="#" class="btn c-btn-green c-btn-square" <c:if test="${!sessionScope.USER.isAdmin}">onclick="add_to_cart(${pro.productId})"</c:if>>Add to cart</a>
                                 </div>
                             </div>
                         </div>

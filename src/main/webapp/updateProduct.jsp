@@ -93,9 +93,11 @@
 
                         <div class="form-group">
                             <label class="col-md-3 control-label">Product Status:</label>
-                            <div class="col-md-6">
-                                <input class="form-control c-square c-theme" name="status" type="checkbox" value="1" <c:if test="${product.status}">checked</c:if>>
+                            <div class="col-md-2"></div>
+                            <div class="col-md-4">
+                                <input class="c-square c-theme" name="status" type="checkbox" value="1" <c:if test="${product.status}">checked</c:if>>Active
                                 </div>
+                                
                             </div>
 
 

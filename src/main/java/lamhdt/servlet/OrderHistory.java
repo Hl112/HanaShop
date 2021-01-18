@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import lamhdt.order.OrderDAO;
 
 /**
  *
@@ -35,6 +36,7 @@ public class OrderHistory extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
+            OrderDAO dao = new OrderDAO();
             
         } finally{
             RequestDispatcher rd = request.getRequestDispatcher(HISTORY_PAGE);
