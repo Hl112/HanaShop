@@ -16,7 +16,7 @@
         <c:if test="${!empty requestScope.NOTI}">
             <c:set var="NOTI" value="${requestScope.NOTI}" scope="request"/>
         </c:if>
-        <c:if test="${sessionScope.status}">
+        <c:if test="${sessionScope.status || empty sessionScope.status}">
             <c:set var="statuss" value="1"/>
         </c:if>
         <c:if test="${sessionScope.LOAD == 0 || empty sessionScope.LOAD}">

@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import lamhdt.account.AccountDTO;
 import lamhdt.cart.CartObj;
 
 /**
@@ -22,8 +23,9 @@ import lamhdt.cart.CartObj;
  */
 @WebServlet(name = "AddToCartServlet", urlPatterns = {"/AddToCartServlet"})
 public class AddToCartServlet extends HttpServlet {
-    
+
     private final String SHOPPING_PAGE = "shopping.jsp";
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -40,16 +42,26 @@ public class AddToCartServlet extends HttpServlet {
         try {
             HttpSession session = request.getSession();
             CartObj cart = (CartObj) session.getAttribute("CART");
-            if(cart == null){
+            AccountDTO acc = (AccountDTO) session.getAttribute("USER");
+            boolean add = true;
+            if (acc != null) {
+                if (acc.isIsAdmin()) {
+                    add = false;
+                }
+            }
+            if (cart == null) {
                 cart = new CartObj();
             }
-            if(id != null){
+            if (id != null && add) {
                 int productId = Integer.parseInt(id);
                 cart.addItemToCart(productId);
+                session.setAttribute("CART", cart);
+                request.setAttribute("NOTI", "Add to cart successfuly");
+            } else{
+                request.setAttribute("NOTI", "Add to cart fail");
             }
-            session.setAttribute("CART", cart);
-            request.setAttribute("NOTI", "Add to cart successfuly");
-        } finally{
+
+        } finally {
             RequestDispatcher rd = request.getRequestDispatcher(SHOPPING_PAGE);
             rd.forward(request, response);
         }
