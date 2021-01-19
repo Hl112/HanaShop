@@ -17,6 +17,8 @@ import java.util.Map;
 import javax.naming.NamingException;
 import lamhdt.orderdetails.OrderDetailsDAO;
 import lamhdt.orderdetails.OrderDetailsDTO;
+import lamhdt.orderstatus.OrderStatusDAO;
+import lamhdt.payment.PaymentDAO;
 import lamhdt.product.ProductDAO;
 import lamhdt.product.ProductDTO;
 import lamhdt.utilities.DBHelper;
@@ -65,18 +67,21 @@ public class OrderDAO implements Serializable {
                 ProductDAO productDAO = new ProductDAO();
                 for (Integer productId : items.keySet()) {
                     ProductDTO productDTO = productDAO.getQuantityById(conn, productId);
-                    if(productDTO.isStatus()){
-                    if (items.get(productId) <= productDTO.getQuantity()) {
-                        check = dao.insertOrderDetails(conn, id, productId, items.get(productId));
-                        check = productDAO.updateQuantity(conn, productId, productDTO.getQuantity() - items.get(productId));
+                    if (productDTO.isStatus()) {
+                        if (items.get(productId) <= productDTO.getQuantity()) {
+                            check = dao.insertOrderDetails(conn, id, productId, items.get(productId));
+                            check = productDAO.updateQuantity(conn, productId, productDTO.getQuantity() - items.get(productId));
+                        } else {
+                            conn.rollback();
+                            throw new Exception(productDTO.getProductName() + " is out of stock :" + "In stock: " + productDTO.getQuantity());
+                        }
                     } else {
-                        conn.rollback();
-                        throw new Exception(productDTO.getProductName() + " is out of stock :" + "In stock: " + productDTO.getQuantity());
-                    }} else{
                         conn.rollback();
                         throw new Exception(productDTO.getProductName() + " is inavaliable");
                     }
-                    if(check == false) conn.rollback();
+                    if (check == false) {
+                        conn.rollback();
+                    }
                 }
                 conn.commit();
                 order = dto;
@@ -117,56 +122,57 @@ public class OrderDAO implements Serializable {
         return id + 1;
     }
 
-    public void getAllOrder() throws SQLException, NamingException {
+    public void searchOrder(String userId, String name, String sDate, String eDate) throws SQLException, NamingException {
+        String min = "1/1/2000";
+        String max = "12/12/2999";
+        if (!sDate.equals("")) {
+            min = sDate;
+        }
+        if (!eDate.equals("")) {
+            max = eDate;
+        }
         try {
             conn = DBHelper.makeConnection();
-            String sql = "SELECT orderID, userID, orderDate, orderStatus, paymentId, address, phone FROM \"Order\"";
+            String sql = "SELECT orderID,orderDate,orderStatus,paymentId,address,phone "
+                    + "FROM [ORDER] "
+                    + "WHERE orderDate BETWEEN ? AND ? AND userID = ?";
             preStm = conn.prepareStatement(sql);
+            preStm.setString(1, min);
+            preStm.setString(2, max);
+            preStm.setString(3, userId);
             rs = preStm.executeQuery();
             history = new ArrayList<>();
             OrderDetailsDAO detailsDAO = new OrderDetailsDAO();
+            ProductDAO proDAO = new ProductDAO();
             while (rs.next()) {
                 int orderID = rs.getInt("orderID");
-                String userID = rs.getString("userID");
                 Date orderDate = rs.getDate("orderDate");
                 int orderStatus = rs.getInt("orderStatus");
                 int paymentId = rs.getInt("paymentId");
                 String address = rs.getNString("address");
                 String phone = rs.getString("phone");
-                OrderDTO orderDTO = new OrderDTO(orderID, userID, orderDate, orderStatus, paymentId, address, phone);
+                OrderDTO orderDTO = new OrderDTO(orderID, userId, orderDate, orderStatus, paymentId, address, phone);
                 List<OrderDetailsDTO> list = detailsDAO.getOrderDetailsById(conn, orderID);
-                HistoryDTO hDTO = new HistoryDTO(orderDTO, list);
-                history.add(hDTO);
+                OrderStatusDAO sDAO = new OrderStatusDAO();
+                PaymentDAO pDAO = new PaymentDAO();
+                boolean check = false;
+                for (OrderDetailsDTO orderDetailsDTO : list) {
+                    ProductDTO dto = proDAO.getProductById(orderDetailsDTO.getProductId());
+                    orderDetailsDTO.setProduct(dto);
+                    if (dto.getProductName().contains(name)) {
+                        check = true;
+                    }
+                }
+                if (check) {
+                    HistoryDTO hDTO = new HistoryDTO(orderDTO, list);
+                    hDTO.setStatus(sDAO.getStatusById(conn,orderStatus));
+                    hDTO.setPayment(pDAO.getPaymnetMethodById(conn, paymentId));
+                    history.add(hDTO);
+                }
             }
         } finally {
             closeConnection();
         }
-    }
-
-    public List<HistoryDTO> searchOrder(String name, Date startDate, Date endDate) throws SQLException, NamingException {
-        List<HistoryDTO> result = null;
-        getAllOrder();
-        ProductDAO productDAO = new ProductDAO();
-        ProductDTO productDTO = null;
-        for (HistoryDTO historyDTO : getHistory()) {
-            if (startDate.compareTo(historyDTO.getOrder().getOrderDate()) <= 0 && endDate.compareTo(historyDTO.getOrder().getOrderDate()) >= 0) {
-                if (result == null) {
-                    result = new ArrayList<>();
-                }
-                if (name.equals("")) {
-                    result.add(historyDTO);
-                } else {
-                    for (OrderDetailsDTO detail : historyDTO.getDetails()) {
-                        productDTO = productDAO.getProductById(detail.getProductId());
-                        if(productDTO.getProductName().matches(name)){
-                            result.add(historyDTO);
-                            break;
-                        }
-                    }
-                }
-            }
-        }
-        return result;
     }
 
 }

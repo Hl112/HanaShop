@@ -6,23 +6,33 @@
 package lamhdt.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import javax.naming.NamingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import lamhdt.account.AccountDTO;
+import lamhdt.order.HistoryDTO;
 import lamhdt.order.OrderDAO;
+import lamhdt.orderstatus.OrderStatusDAO;
 
 /**
  *
  * @author HL
  */
-@WebServlet(name = "OrderHistory", urlPatterns = {"/OrderHistory"})
-public class OrderHistory extends HttpServlet {
-    
-    private final String HISTORY_PAGE = "orderHistory";
+@WebServlet(name = "OrderHistoryServlet", urlPatterns = {"/OrderHistoryServlet"})
+public class OrderHistoryServlet extends HttpServlet {
+
+    private final String HISTORY_PAGE = "orderHistory.jsp";
+    private final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -36,9 +46,33 @@ public class OrderHistory extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
+            String name = request.getParameter("name");
+            System.out.println(name);
+//            if (!name.equals("") && name != null) {
+//                name = URLEncoder.encode(name, "ISO-8859-1");
+//                name = URLDecoder.decode(name, "UTF-8");
+//            }
+            request.setAttribute("name", name);
+            String startDate = request.getParameter("sDate");
+
+            String endDate = request.getParameter("eDate");
+           
             OrderDAO dao = new OrderDAO();
-            
-        } finally{
+            HttpSession session = request.getSession(false);
+            if (session != null) {
+                AccountDTO acc = (AccountDTO) session.getAttribute("USER");
+                if (acc != null) {
+                    dao.searchOrder(acc.getUserID(), name, startDate, endDate);
+                    session.setAttribute("HISTORY", dao.getHistory());
+
+                }
+            }
+            request.setAttribute("LOADHISTORY", 1);
+        } catch (SQLException ex) {
+            log("OrderHistory _ SQL : " + ex.getMessage());
+        } catch (NamingException ex) {
+            log("OrderHistory _ Naming : " + ex.getMessage());
+        } finally {
             RequestDispatcher rd = request.getRequestDispatcher(HISTORY_PAGE);
             rd.forward(request, response);
         }

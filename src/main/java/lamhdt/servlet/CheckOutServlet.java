@@ -6,11 +6,8 @@
 package lamhdt.servlet;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.naming.NamingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -53,36 +50,39 @@ public class CheckOutServlet extends HttpServlet {
             String address = request.getParameter("address");
             String phone = request.getParameter("phone");
             String payment = request.getParameter("payment");
+            int status = 0;
             if (payment != null) {
                 int payment_id = Integer.parseInt(payment);
-                if (payment_id == 2) {
-                    HttpSession session = request.getSession(false);
-                    if (session != null) {
-                        CartObj cart = (CartObj) session.getAttribute("CART");
-                        AccountDTO acc = (AccountDTO) session.getAttribute("USER");
-                        if (cart != null && acc != null) {
-                            Map<Integer, Integer> items = cart.getItems();
-                            if (items != null) {
-                                OrderDAO dao = new OrderDAO();
-                                OrderDTO dto = new OrderDTO(acc.getUserID(), 0, payment_id, address, phone);
-                                if (dao.createOrder(dto, items)) {
-                                    url = VIEWORDER_PAGE;
-                                   request.setAttribute("ORDER", dto);
-                                   request.setAttribute("NOTI", "Order successfuly");
-                                }else{
-                                    request.setAttribute("NOTI", "ORDER Fail");
-                                }
+                if (payment_id != 2) {
+                    status = 1;
+                }
+                HttpSession session = request.getSession(false);
+                if (session != null) {
+                    CartObj cart = (CartObj) session.getAttribute("CART");
+                    AccountDTO acc = (AccountDTO) session.getAttribute("USER");
+                    if (cart != null && acc != null) {
+                        Map<Integer, Integer> items = cart.getItems();
+                        if (items != null) {
+                            OrderDAO dao = new OrderDAO();
+                            OrderDTO dto = new OrderDTO(acc.getUserID(), status, payment_id, address, phone);
+                            if (dao.createOrder(dto, items)) {
+                                url = VIEWORDER_PAGE;
+                                request.setAttribute("ORDER", dto);
+                                request.setAttribute("NOTI", "Order successfuly");
+                            } else {
+                                request.setAttribute("NOTI", "ORDER Fail");
                             }
                         }
                     }
                 }
+
             }
         } catch (NamingException ex) {
-          log("CheckOutServlet _ Naming: " + ex.getMessage());
+            log("CheckOutServlet _ Naming: " + ex.getMessage());
         } catch (SQLException ex) {
-          log("CheckOutServlet _ SQL: " + ex.getMessage());
+            log("CheckOutServlet _ SQL: " + ex.getMessage());
         } catch (Exception ex) {
-           request.setAttribute("NOTI", ex.getMessage());
+            request.setAttribute("NOTI", ex.getMessage());
         } finally {
             RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);

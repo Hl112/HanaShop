@@ -6,6 +6,7 @@
 package lamhdt.orderdetails;
 
 import java.io.Serializable;
+import lamhdt.product.ProductDTO;
 
 /**
  *
@@ -15,6 +16,7 @@ public class OrderDetailsDTO implements Serializable{
     private int orderId;
     private int productId;
     private int quantity;
+    private ProductDTO product;
 
     public OrderDetailsDTO() {
     }
@@ -31,6 +33,14 @@ public class OrderDetailsDTO implements Serializable{
 
     public void setOrderId(int orderId) {
         this.orderId = orderId;
+    }
+
+    public ProductDTO getProduct() {
+        return product;
+    }
+
+    public void setProduct(ProductDTO product) {
+        this.product = product;
     }
 
    

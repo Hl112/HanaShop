@@ -67,7 +67,7 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">Product Price:</label>
                             <div class="col-md-6">
-                                <input class="form-control  c-square c-theme" name="price" type="text" id="productPrice" required="" autofocus="">
+                                <input class="form-control  c-square c-theme" name="price" type="number" min="1" id="productPrice" required="" autofocus="">
                             </div>
                         </div>
 

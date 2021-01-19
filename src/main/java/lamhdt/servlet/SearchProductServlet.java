@@ -7,6 +7,8 @@ package lamhdt.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.sql.SQLException;
 import java.util.List;
 import javax.naming.NamingException;
@@ -46,7 +48,9 @@ public class SearchProductServlet extends HttpServlet {
         String searchValue = request.getParameter("searchValue");
         String categoryId = request.getParameter("category");
         String price = request.getParameter("price");
-      
+        searchValue = URLEncoder.encode(searchValue, "ISO-8859-1");
+        searchValue = URLDecoder.decode(searchValue, "UTF-8");
+        request.setAttribute("searchValue", searchValue);
         int id = -1, priceMax = -1;
         try {
             if(categoryId != null && !categoryId.equals("---Select Category---")){

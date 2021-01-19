@@ -65,11 +65,11 @@
                         </div>
                         <div class="input-group m-b-10 c-square col-md-4 col-sm-12">
                             <span class="input-group-addon" id="basic-addon1">Search</span>
-                            <input type="text" class="form-control c-square c-theme" name="searchValue" placeholder="Search by name" value="${param.searchValue}">
+                            <input type="text" class="form-control c-square c-theme" name="searchValue" placeholder="Search by name" value="${requestScope.searchValue}">
                     </div>
                     <input type="submit" class="btn c-theme-btn c-btn-square m-b-10" name="btAction" value="Search">
                     <c:if test="${not empty param.category || not empty param.price}">
-                        <c:if test="${param.category != -1 || param.price != -1 || not empty param.searchValue}">
+                        <c:if test="${param.category != -1 || param.price != -1 || not empty param.searchValue || not empty requestScope.searchValue}">
                             <a href="ShowProductServlet" class="btn btn-danger">X</a>
                         </c:if></c:if>
                     </form>

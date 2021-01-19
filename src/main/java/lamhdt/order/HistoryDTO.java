@@ -8,6 +8,8 @@ package lamhdt.order;
 import java.io.Serializable;
 import java.util.List;
 import lamhdt.orderdetails.OrderDetailsDTO;
+import lamhdt.orderstatus.OrderStatusDTO;
+import lamhdt.payment.PaymentDTO;
 
 /**
  *
@@ -16,6 +18,8 @@ import lamhdt.orderdetails.OrderDetailsDTO;
 public class HistoryDTO implements Serializable{
     private OrderDTO order;
     private List<OrderDetailsDTO> details;
+    private OrderStatusDTO status;
+    private PaymentDTO payment;
 
     public HistoryDTO() {
     }
@@ -23,6 +27,22 @@ public class HistoryDTO implements Serializable{
     public HistoryDTO(OrderDTO order, List<OrderDetailsDTO> details) {
         this.order = order;
         this.details = details;
+    }
+
+    public OrderStatusDTO getStatus() {
+        return status;
+    }
+
+    public void setStatus(OrderStatusDTO status) {
+        this.status = status;
+    }
+
+    public PaymentDTO getPayment() {
+        return payment;
+    }
+
+    public void setPayment(PaymentDTO payment) {
+        this.payment = payment;
     }
 
     

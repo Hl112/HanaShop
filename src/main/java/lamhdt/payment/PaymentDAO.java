@@ -19,7 +19,8 @@ import lamhdt.utilities.DBHelper;
  *
  * @author HL
  */
-public class PaymentDAO implements Serializable{
+public class PaymentDAO implements Serializable {
+
     private Connection conn;
     private PreparedStatement preStm;
     private ResultSet rs;
@@ -35,8 +36,8 @@ public class PaymentDAO implements Serializable{
             conn.close();
         }
     }
-    
-    public  List<PaymentDTO> getPaymnetMethod() throws NamingException, SQLException{
+
+    public List<PaymentDTO> getPaymnetMethod() throws NamingException, SQLException {
         List<PaymentDTO> result = null;
         PaymentDTO dto = null;
         try {
@@ -45,16 +46,39 @@ public class PaymentDAO implements Serializable{
             preStm = conn.prepareStatement(sql);
             rs = preStm.executeQuery();
             result = new ArrayList<>();
-            while(rs.next()){
+            while (rs.next()) {
                 int id = rs.getInt("paymentId");
                 String paymentMethod = rs.getNString("paymentMethod");
                 dto = new PaymentDTO(id, paymentMethod);
                 result.add(dto);
             }
-        } finally{
+        } finally {
             closeConnection();
         }
         return result;
-        
+
+    }
+
+    public PaymentDTO getPaymnetMethodById(Connection conn, int id) throws NamingException, SQLException {
+        PaymentDTO dto = null;
+        try {
+            String sql = "SELECT paymentMethod FROM Payment WHERE paymentId = ?";
+            preStm = conn.prepareStatement(sql);
+            preStm.setInt(1, id);
+            rs = preStm.executeQuery();
+            if (rs.next()) {
+                String paymentMethod = rs.getNString("paymentMethod");
+                dto = new PaymentDTO(id, paymentMethod);
+            }
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (preStm != null) {
+                preStm.close();
+            }
+        }
+        return dto;
+
     }
 }

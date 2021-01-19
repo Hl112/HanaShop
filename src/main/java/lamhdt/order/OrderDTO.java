@@ -100,6 +100,32 @@ public class OrderDTO implements Serializable{
     public void setPaymentId(int paymentId) {
         this.paymentId = paymentId;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 11 * hash + this.orderId;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final OrderDTO other = (OrderDTO) obj;
+        if (this.orderId != other.orderId) {
+            return false;
+        }
+        return true;
+    }
+    
     
     
     

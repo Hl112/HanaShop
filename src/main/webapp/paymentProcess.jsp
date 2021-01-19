@@ -5,6 +5,7 @@
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -21,22 +22,22 @@
                         <h3 class="c-font-uppercase c-font-bold">You are not logged in</h3>
                         <p class="c-font-uppercase">
                             You must login to continue  </p>
-                         <a class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-dark c-btn-circle c-btn-uppercase c-btn-sbold"
-                                           href="login.html"><i class="icon-user"></i>Login</a>
+                        <a class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-dark c-btn-circle c-btn-uppercase c-btn-sbold"
+                           href="login.html"><i class="icon-user"></i>Login</a>
                     </div>
                 </div> 
             </div>
         </c:if>
-        
+
         <c:if test="${not empty sessionScope.USER}">
             <c:if test="${empty sessionScope.PAYMENT}">
                 <c:redirect url="DispatcherServlet?btAction=Payment"/>
             </c:if>
-            
+
             <c:set var="list" value="${sessionScope.LISTCART}"/>
             <c:set var="pay" value="${sessionScope.PAYMENT}"/>
-            
-            
+
+
             <div class="c-layout-page" style="margin-top: 20px;">
                 <div class="container">
                     <div class="c-layout-sidebar-content ">
@@ -72,10 +73,7 @@
                                     </tr>
                                 </tbody>
                             </table>  
-
-
                         </div>
-
                         <div class="col-md-6">
                             <div class="c-content-title-1">
                                 <h3 class="c-font-uppercase c-font-bold">Fill Information</h3>
@@ -107,12 +105,52 @@
                                     <div class="c-line-left"></div>
                                 </div>
                                 <c:forEach items="${pay}" var="pay" varStatus="counter">
-                                <div class="form-group">
-                                    <div class="col-md-offset-3 col-md-6">
-                                        <label class="col-md-4">${pay.paymentMethod} </label>
-                                        <input type="radio" id="payment" name="payment" value="${pay.paymentId}" class="col-md-3" checked>
-                                    </div>
-                                </div> 
+                                    <c:if test="${pay.paymentId != 2}">
+                                        <c:set var="USD" value="${sum / 23000}"/> 
+                                        <script src="https://www.paypal.com/sdk/js?client-id=ARLIyqpVS50SWQSS0lZV8cQhiwrKyT3eYJ-eyaSnW_Wzhu6E8qINB7RENx22j4QGl3mLx3gOfkiLbmbG"></script>
+                                        <div id="paypal-button-container"></div>
+                                        <script>
+                                            paypal.Buttons({
+                                                // Set up the transaction
+                                                createOrder: function (data, actions) {
+                                                    return actions.order.create({
+                                                        purchase_units: [{
+                                                                amount: {
+                                                                    value: '<fmt:formatNumber value="${USD}" maxFractionDigits="0"/>.00'
+                                                                }
+                                                            }]
+                                                    });
+                                                },
+                                                // Finalize the transaction
+                                                onApprove: function (data, actions) {
+                                                    return actions.order.capture().then(function (details) {
+                                                        // Show a success message to the buyer
+                                                        var name = details.payer.name.given_name;
+                                                        var address1 = details.purchase_units[0].shipping.address.address_line_1;
+                                                        var address2 = details.purchase_units[0].shipping.address.address_line_2;
+                                                        var url = "DispatcherServlet";
+                                                        var params = '?btAction=Check out&address=' + address1 + '&phone=' + address2+'&payment=1';
+                                                                location.replace(url+params);
+                                                    });
+                                                },
+                                                style: {
+                                                    color: 'blue',
+                                                    shape: 'pill',
+                                                    label: 'pay',
+                                                    height: 40
+                                                }
+                                            }).render('#paypal-button-container');
+                                            //This function displays Smart Payment Buttons on your web page.
+                                        </script>
+                                    </c:if>
+                                    <c:if test="${pay.paymentId == 2}">
+                                        <div class="form-group">
+                                            <div class="col-md-offset-3 col-md-6">
+                                                <label class="col-md-4">${pay.paymentMethod} </label>
+                                                <input type="radio" id="payment" name="payment" value="${pay.paymentId}" class="col-md-3" checked>
+                                            </div>
+                                        </div> 
+                                    </c:if>
                                 </c:forEach>
                                 <div class="form-group c-margin-t-40">
                                     <div class="col-md-offset-3 col-md-6">

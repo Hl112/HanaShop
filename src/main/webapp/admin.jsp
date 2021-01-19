@@ -87,7 +87,7 @@
                             </div>
                             <div class="input-group m-b-10 c-square col-md-2 col-sm-12">
                                 <span class="input-group-addon" id="basic-addon1">Search</span>
-                                <input type="text" class="form-control c-square c-theme" name="searchValue" placeholder="Search by name" value="${param.searchValue}">
+                                <input type="text" class="form-control c-square c-theme" name="searchValue" placeholder="Search by name" value="${requestScope.searchValue}">
                         </div>
                         <div class="input-group m-t-10 c-square col-md-2 col-sm-5">
                             <span class="input-group-addon" id="basic-addon1">Active</span>
@@ -98,7 +98,7 @@
                             </div>
                             <input type="submit" class="btn c-theme-btn c-btn-square m-b-10" name="btAction" value="Search Product">
                         <c:if test="${not empty param.category || not empty param.price}">
-                            <c:if test="${param.category != -1 || param.price != -1 || param.status == 0 || statuss != 1}">
+                            <c:if test="${param.category != -1 || param.price != -1 || param.status == 0 || statuss != 1 || not empty requestScope.searchValue}">
                                 <a href="GetProductServlet?category=-1&price=-1&searchValue=&status=1" class="btn btn-danger">X</a>
                             </c:if></c:if>
                         </form>

@@ -23,6 +23,7 @@ public class DispatcherServlet extends HttpServlet {
     private final String SEARCH_SERVLET = "SearchProductServlet";
     private final String SEARCH_AD_SERVLET = "GetProductServlet";
     private final String SHOWPRODUCT_SERVLET = "ShowProductServlet";
+    private final String HISTORY_SERVLET = "OrderHistoryServlet";
     // Cart
     private final String ADDTOCART_SERVLET = "AddToCartServlet";
     private final String VIEWCART_SERVLET = "ViewCartServlet";
@@ -91,6 +92,10 @@ public class DispatcherServlet extends HttpServlet {
                 if(button.equals("Check out")){
                     url = CHECKOUT_SERVLET;
                 }
+                if(button.equals("Search Order")){
+                    url = HISTORY_SERVLET;
+                }
+                
 
             }
 

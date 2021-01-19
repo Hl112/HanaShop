@@ -18,8 +18,8 @@
                         <ul class="c-menu c-arrow-dot c-square c-theme">
 						<li><a class="active" href="user.jsp">Account Information</a></li>
                             <li><a class="" href="orderHistory.jsp">Shopping history</a></li>
-                            <li><a class="" href="#" >Change password</a></li>
-                            <li><a class="" href="#">Change Information</a></li>
+<!--                            <li><a class="" href="#" >Change password</a></li>
+                            <li><a class="" href="#">Change Information</a></li>-->
                         </ul>
                     </div>
                 </div>
