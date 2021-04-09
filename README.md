@@ -13,7 +13,7 @@ The requirements is inside the PDF.<a href="https://github.com/Hl112/HanaShop/bl
   * Mr. Kieu Trong Khanh
   
 ### Editor used
-* Netbeans 8.2
+* Netbeans 12.1
 * SQL Server 2014 Management Studio
 * VS Code
 
