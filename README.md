@@ -28,7 +28,15 @@ The requirements is inside the PDF.<a href="https://github.com/Hl112/HanaShop/bl
 * Java JDK8
 * Bootstrap 4
 * JQuery
+* AJAX
 * Paypal API
 * Login with Google API
 
+### Screenshot
+<p align='center'>
+<img width="450" height="180" src="https://github.com/Hl112/HanaShop/blob/6d326fcfe11fa5e718d1928817debc530701c8c5/Screenshot.png"/>
+<img width="450" height="180" src="https://github.com/Hl112/HanaShop/blob/5b1a5045f21291fae5c032f96fe6a26a696adfa2/Screenshot3.png"/>
+<img width="450" height="180" src="https://github.com/Hl112/HanaShop/blob/6d326fcfe11fa5e718d1928817debc530701c8c5/Screenshot1.png"/>
+<img width="450" height="180" src="https://github.com/Hl112/HanaShop/blob/6d326fcfe11fa5e718d1928817debc530701c8c5/Screenshot2.png"/>
+<p>
 #### © 2021 by HL
