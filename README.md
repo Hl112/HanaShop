@@ -25,7 +25,7 @@ The requirements is inside the PDF.<a href="https://github.com/Hl112/HanaShop/bl
 * JS
 
 ### Implemented technology
-* Java JDK8
+* Java JDK15
 * Bootstrap 4
 * JQuery
 * AJAX
